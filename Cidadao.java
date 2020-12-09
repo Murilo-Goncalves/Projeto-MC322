@@ -9,7 +9,7 @@ public class Cidadao {
     private String telefone;
     private String email;
     private String sexo;
-    private Contaminacao contaminacao;
+    private EstadoDeContaminacao contaminacao;
     private boolean isGrupoDeRisco;
     private ArrayList<Sintomas> sintomas;
     private boolean isCampinas;
@@ -95,11 +95,11 @@ public class Cidadao {
         isCampinas = campinas;
     }
 
-    public Contaminacao getContaminacao() {
+    public EstadoDeContaminacao getContaminacao() {
         return contaminacao;
     }
 
-    public void setContaminacao(Contaminacao contaminacao) {
+    public void setContaminacao(EstadoDeContaminacao contaminacao) {
         this.contaminacao = contaminacao;
     }
 
@@ -123,8 +123,8 @@ public class Cidadao {
         return true;
     }
     // a ser alterado
-    public ArrayList<Hospital> hospitaisNaregiao() {
-        ArrayList<Hospital> hospitais = new ArrayList<Hospital>();
+    public ArrayList<Hospitais> hospitaisNaregiao() {
+        ArrayList<Hospitais> hospitais = new ArrayList<Hospitais>();
         return hospitais;
     }
 }
