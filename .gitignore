@@ -1,5 +1,6 @@
-# Path
+# Eclipse project files
 .classpath
+.project
 
 # Compiled class file
 *.class
