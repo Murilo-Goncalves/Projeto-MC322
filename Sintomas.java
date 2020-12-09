@@ -1,23 +1,20 @@
-package project_one;
-
 import java.util.ArrayList;
 
 public enum Sintomas {
-	// Informações retiradas do site: https://coronavirus.saude.gov.br/sobre-a-doenca
+	// InformaÃ§Ãµes retiradas do site: https://coronavirus.saude.gov.br/sobre-a-doenca
 	
-		febre("comum", "leve"),
-		tosse_seca("comum", "leve"),
-		cansaço("comum", "leve"),
-		dor_de_garganta("menos comum", "leve"),
-		diarreia("menos comum", "leve"),
-		conjutivite("menos comum", "leve"),
-		dor_de_cabeca("menos comum", "leve"),
-		perda_paladar_olfato("menos comum", "leve"),
-		erupcao_cutanea("menos comum", "leve"),
-		falta_de_ar("menos comum", "grave"),
-		dor_ou_pressao_no_peito("menos comum", "grave"),
-		perda_de_fala_ou_movimento("menos comum", "grave");
-		
+		FEBRE("comum", "leve"),
+		TOSSE_SECA("comum", "leve"),
+		CANSACO("comum", "leve"),
+		DOR_DE_GARGANTA("menos comum", "leve"),
+		DIARREIA("menos comum", "leve"),
+		CONJUNTIVITE("menos comum", "leve"),
+		DOR_DE_CABECA("menos comum", "leve"),
+		PERDA_PALADAR_OU_OLFATO("menos comum", "leve"),
+		ERUPCAO_CUTANEA("menos comum", "leve"),
+		FALTA_DE_AR("menos comum", "grave"),
+		DOR_OU_PRESSAO_NO_PEITO("menos comum", "grave"),
+		PERDA_DE_FALA_OU_MOVIMENTO("menos comum", "grave");
 		
 		private final String freq;
 		private final String gravidade;
@@ -36,9 +33,9 @@ public enum Sintomas {
 		}
 		
 		public void isCovid(ArrayList<Sintomas> sintomas) {
-			if(sintomas.isEmpty()) {System.out.println("Cidadão não possui COVID");}
+			if(sintomas.isEmpty()) {System.out.println("Cidadï¿½o nï¿½o possui COVID");}
 			
-			else {System.out.println("Cidadão está com suspeita de COVID");}
+			else {System.out.println("Cidadï¿½o estï¿½ com suspeita de COVID");}
 		}
 
 }
