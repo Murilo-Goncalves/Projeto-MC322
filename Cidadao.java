@@ -14,6 +14,7 @@ public class Cidadao {
     private ArrayList<Sintomas> sintomas;
     private boolean isCampinas;
     private Regiao regiao;
+    private boolean convenio;
 
     public String getNome() {
         return nome;
@@ -118,13 +119,12 @@ public class Cidadao {
     public void setRegiao(Regiao regiao) {
         this.regiao = regiao;
     }
-    // a ser altetado
-    public boolean SuspeitaDeCovid() {
-        return true;
+
+    public boolean hasConvenio() {
+        return convenio;
     }
-    // a ser alterado
-    public ArrayList<Hospitais> hospitaisNaregiao() {
-        ArrayList<Hospitais> hospitais = new ArrayList<Hospitais>();
-        return hospitais;
+
+    public void setConvenio(boolean convenio) {
+        this.convenio = convenio;
     }
 }
