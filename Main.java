@@ -15,5 +15,7 @@ public class Main {
         hospital13 = new Hospital("Santa Sofia", 7, Regiao.CENTRO);
         hospital14 = new Hospital("Renascença", 10, Regiao.NORTE);
 
+
+// to alterando um teste
     }
 }
