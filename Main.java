@@ -1,6 +1,7 @@
+package Projeto1;
 public class Main {
     public static void main (String[] Args) {
-        hospital1 = new Hospital("Santana", 5, Regiao.LESTE);
+        Hospital hospital1 = new Hospital("Santana", 5, Regiao.LESTE);
         hospital2 = new Hospital("Mario Gatti", 10, Regiao.CENTRO);
         hospital3 = new Hospital("CENTRO Médico de Campinas", 15, Regiao.NORTE);
         hospital4 = new Hospital("HC da UNICAMP", 30, Regiao.NORTE);

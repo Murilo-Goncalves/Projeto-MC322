@@ -1,3 +1,4 @@
+package Projeto1;
 import java.util.ArrayList;
 
 public enum Sintomas {
@@ -18,23 +19,35 @@ public enum Sintomas {
 	private final String freq;
 	private final String gravidade;
 	
-	Sintomas(String freq, String gravidade){
+	Sintomas(String freq, String gravidade) {
 		this.freq = freq;
 		this.gravidade = gravidade;
 	}
-	
-	public String getGravidade() {
-		return gravidade;
-	}
+
+	public String getGravidade() { return gravidade; }
 	
 	public String getFrequencia() {
 		return freq;
 	}
-	
-	public void isCovid(ArrayList<Sintomas> sintomas) {
-		if(sintomas.isEmpty()) {System.out.println("Cidad�o n�o possui COVID");}
-		
-		else {System.out.println("Cidad�o est� com suspeita de COVID");}
+
+	// retorna verdadeiro se tiver muitos sintomas, ou se os sintomas forem graves.
+	public static int GravidadeCovid (ArrayList<Sintomas> sintomas) {
+		double nota = 0;
+		int nSintomas = sintomas.size();
+		if (nSintomas == 0) return 0;	// se nao tiver sintomas.
+		for (int i =0; i < nSintomas; i++) {
+			if (sintomas.get(i).getGravidade() == "leve") nota += 0.7;
+			else nota += 4;
+		}
+		nota = (10 > nota? nota : 10);
+		return (int) nota;
+	}
+
+	// Retiraria esse método
+	public static void isSuspeitaCovid(ArrayList<Sintomas> sintomas) {
+		if(sintomas.isEmpty())
+		{System.out.println("Cidadao nao possui COVID");}
+		else {System.out.println("Cidadao está com suspeita de COVID");}
 	}
 
 }

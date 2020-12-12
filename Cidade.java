@@ -1,3 +1,5 @@
+package Projeto1;
+
 import java.util.ArrayList;
 
 public class Cidade {
@@ -5,7 +7,7 @@ public class Cidade {
     private ArrayList<Cidadao> cidadaos;
     private ArrayList<HospitalPublico> hospitaisPublicos;
     private ArrayList<HospitalPrivado> hospitaisPrivados;
-    private static int nCovidados = 0;
+    private static int nCidadaosComCovid = 0;
 
     public Cidade(String nome)
     {
@@ -17,6 +19,7 @@ public class Cidade {
     	
 	public boolean isSuspeita(Cidadao cidadao) {
         if (cidadao.getSintomas().isEmpty()) {
+        // if (!Sintomas.isSuspeitaCovid(cidadao.getSintomas())) {
             System.out.println("Cidadão não possui suspeita de COVID");
             return false;
         }

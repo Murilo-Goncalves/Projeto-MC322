@@ -1,3 +1,5 @@
+package Projeto1;
+// falta completar toString
 import java.util.ArrayList;
 
 public class Cidadao {
@@ -9,12 +11,26 @@ public class Cidadao {
     private String telefone;
     private String email;
     private String sexo;
-    private EstadoDeContaminacao contaminacao;
-    private boolean isGrupoDeRisco;
+
     private ArrayList<Sintomas> sintomas;
     private boolean isCampinas;
     private Regiao regiao;
     private boolean convenio;
+
+    public Cidadao(String nome, String cpf, String login, String senha, int idade, String telefone, String email, String sexo, ArrayList<Sintomas> sintomas, boolean isCampinas, Regiao regiao, boolean convenio) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.login = login;
+        this.senha = senha;
+        this.idade = idade;
+        this.telefone = telefone;
+        this.email = email;
+        this.sexo = sexo;
+        this.sintomas = sintomas;
+        this.isCampinas = isCampinas;
+        this.regiao = regiao;
+        this.convenio = convenio;
+    }
 
     public String getNome() {
         return nome;
@@ -80,13 +96,6 @@ public class Cidadao {
         this.sexo = sexo;
     }
 
-    public boolean isGrupoDeRisco() {
-        return isGrupoDeRisco;
-    }
-
-    public void setGrupoDeRisco(boolean grupoDeRisco) {
-        isGrupoDeRisco = grupoDeRisco;
-    }
 
     public boolean isCampinas() {
         return isCampinas;
@@ -94,14 +103,6 @@ public class Cidadao {
 
     public void setCampinas(boolean campinas) {
         isCampinas = campinas;
-    }
-
-    public EstadoDeContaminacao getContaminacao() {
-        return contaminacao;
-    }
-
-    public void setContaminacao(EstadoDeContaminacao contaminacao) {
-        this.contaminacao = contaminacao;
     }
 
     public ArrayList<Sintomas> getSintomas() {
@@ -126,5 +127,21 @@ public class Cidadao {
 
     public void setConvenio(boolean convenio) {
         this.convenio = convenio;
+    }
+
+    @Override
+        public String toString() {
+        String out = "";
+        out += "Informacoes do Cidadao " + this.getNome();
+        out += "\n  * cpf: ";
+        out += "\n  * idade: ";
+        out += "\n  * login: ";
+        out += "\n  * telefone: ";
+        out += "\n  * email: ";
+        out += "\n  * sexo: ";
+        out += "\n  * Mora em Campinas? ";
+        out += "\n  * Regiao em que mora: ";
+        out += "\n  * Possui convênio privado? ";
+        return out;
     }
 }

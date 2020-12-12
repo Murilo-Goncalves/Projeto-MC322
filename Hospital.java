@@ -1,3 +1,5 @@
+package Projeto1;
+
 import java.util.ArrayList;
 
 public class Hospital {
@@ -5,6 +7,12 @@ public class Hospital {
     private int capacidadeLeitos;
     private Regiao regiao;
     private ArrayList<Paciente> pacientes;
+
+    Hospital(String nome, int capacidadeLeitos, Regiao regiao) {
+        this.nome = nome;
+        this.capacidadeLeitos = capacidadeLeitos;
+        this.regiao = regiao;
+    }
 
     // TODO CONSTRUTORES
     // TODO TOSTRING
