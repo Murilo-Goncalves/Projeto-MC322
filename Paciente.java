@@ -1,5 +1,5 @@
 package Projeto1;
-// falta completar toString
+
 import java.util.ArrayList;
 
 public class Paciente extends Cidadao {
@@ -27,7 +27,7 @@ public class Paciente extends Cidadao {
         return massaCorporal;
     }
 
-    public void setMassaCorporal(double massaCorporal) {
+    private void setMassaCorporal(double massaCorporal) {
         this.massaCorporal = massaCorporal;
     }
 
@@ -35,7 +35,7 @@ public class Paciente extends Cidadao {
         return hasDoencasCronicas;
     }
 
-    public void setHasDoencasCronicas(boolean hasDoencasCronicas) {
+    private void setHasDoencasCronicas(boolean hasDoencasCronicas) {
         this.hasDoencasCronicas = hasDoencasCronicas;
     }
 
@@ -43,7 +43,7 @@ public class Paciente extends Cidadao {
         return isFumante;
     }
 
-    public void setFumante(boolean fumante) {
+    private void setFumante(boolean fumante) {
         isFumante = fumante;
     }
 
@@ -51,7 +51,7 @@ public class Paciente extends Cidadao {
         return severidade;
     }
 
-    public void setSeveridade(QuadroDeSaude saude, ArrayList<Sintomas> sintomas) {
+    private void setSeveridade(QuadroDeSaude saude, ArrayList<Sintomas> sintomas) {
         if (saude == QuadroDeSaude.SAUDAVEL) severidade = "nenhuma";
         int risco = Sintomas.GravidadeCovid(sintomas);
         if (risco < 4 && !this.isGrupoDeRisco) {
@@ -72,7 +72,7 @@ public class Paciente extends Cidadao {
         return saude;
     }
 
-    public void setSaude(boolean testadoPositivamente, ArrayList<Sintomas> sintomas) {
+    private void setSaude(boolean testadoPositivamente, ArrayList<Sintomas> sintomas) {
         if(testadoPositivamente) this.saude = QuadroDeSaude.DOENTE;
         else if (sintomas.isEmpty()) this.saude = QuadroDeSaude.SAUDAVEL;
         else this.saude = QuadroDeSaude.SUSPEITA;
@@ -82,7 +82,7 @@ public class Paciente extends Cidadao {
         return isGrupoDeRisco;
     }
 
-    public void setGrupoDeRisco(double massaCorporal, boolean hasDoencasCronicas, boolean isFumante) {
+    private void setGrupoDeRisco(double massaCorporal, boolean hasDoencasCronicas, boolean isFumante) {
         if (massaCorporal > 120 || super.getIdade() > 60 || super.getIdade() <= 5 || isFumante || hasDoencasCronicas)
             isGrupoDeRisco = true;
         else isGrupoDeRisco = false;
@@ -92,7 +92,7 @@ public class Paciente extends Cidadao {
         return tempoDeTratamento;
     }
 
-    public void setTempoDeTratamento(String severidade, QuadroDeSaude saude) {
+    private void setTempoDeTratamento(String severidade, QuadroDeSaude saude) {
         if (saude == QuadroDeSaude.DOENTE) {
             if (severidade == "leve") tempoDeTratamento = "cerca de 10 dias.";
             else if (severidade == "mediana") tempoDeTratamento = "cerca de 20 dias.";
@@ -104,13 +104,13 @@ public class Paciente extends Cidadao {
     public String toString() {
         String out = "";
         out += super.toString();
-        out += "\nInformacoes do Paciente " + super.getNome() + " *";
-        out += "\n  * Massa corporal: ";
-        out += "\n  * Possui doencas crônicas? ";
-        out += "\n  * É fumante? ";
-        out += "\n  * É grupo de risco? ";
-        out += "\n  * Riscos à saúde: ";
-        out += "\n  * Tempo de tratamento necessário: ";
+        out += "\nInformacoes do Paciente " + super.getNome();
+        out += "\n  * Massa corporal: " + String.format("%.2f", getMassaCorporal());
+        out += "\n  * Possui doencas crônicas? " + (hasDoencasCronicas() ? "Sim." : "Nao.");
+        out += "\n  * É fumante? " + (isFumante() ? "Sim." : "Nao.");
+        out += "\n  * É grupo de risco? " + (isGrupoDeRisco() ? "Sim." : "Nao.");
+        out += "\n  * Riscos à saúde: " + getSeveridade();
+        out += "\n  * Tempo de tratamento necessário: " + getTempoDeTratamento();
         return out;
     }
 }

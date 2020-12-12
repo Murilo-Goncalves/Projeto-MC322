@@ -30,14 +30,14 @@ public enum Sintomas {
 		return freq;
 	}
 
-	// retorna verdadeiro se tiver muitos sintomas, ou se os sintomas forem graves.
+	// retorna nota de gravidade, de 0 a 10..
 	public static int GravidadeCovid (ArrayList<Sintomas> sintomas) {
 		double nota = 0;
 		int nSintomas = sintomas.size();
 		if (nSintomas == 0) return 0;	// se nao tiver sintomas.
 		for (int i =0; i < nSintomas; i++) {
-			if (sintomas.get(i).getGravidade() == "leve") nota += 0.7;
-			else nota += 4;
+			if (sintomas.get(i).getGravidade().equals("leve")) nota += 0.7;
+			else nota += 5;
 		}
 		nota = (10 > nota? nota : 10);
 		return (int) nota;

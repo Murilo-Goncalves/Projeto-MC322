@@ -1,5 +1,5 @@
 package Projeto1;
-// falta completar toString
+
 import java.util.ArrayList;
 
 public class Cidadao {
@@ -36,7 +36,7 @@ public class Cidadao {
         return nome;
     }
 
-    public void setNome(String nome) {
+    private void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -44,7 +44,7 @@ public class Cidadao {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    private void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -52,7 +52,7 @@ public class Cidadao {
         return login;
     }
 
-    public void setLogin(String login) {
+    private void setLogin(String login) {
         this.login = login;
     }
 
@@ -60,7 +60,7 @@ public class Cidadao {
         return senha;
     }
 
-    public void setSenha(String senha) {
+    private void setSenha(String senha) {
         this.senha = senha;
     }
 
@@ -68,7 +68,7 @@ public class Cidadao {
         return idade;
     }
 
-    public void setIdade(int idade) {
+    private void setIdade(int idade) {
         this.idade = idade;
     }
 
@@ -76,7 +76,7 @@ public class Cidadao {
         return telefone;
     }
 
-    public void setTelefone(String telefone) {
+    private void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -84,7 +84,7 @@ public class Cidadao {
         return email;
     }
 
-    public void setEmail(String email) {
+    private void setEmail(String email) {
         this.email = email;
     }
 
@@ -92,7 +92,7 @@ public class Cidadao {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    private void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
@@ -101,7 +101,7 @@ public class Cidadao {
         return isCampinas;
     }
 
-    public void setCampinas(boolean campinas) {
+    private void setCampinas(boolean campinas) {
         isCampinas = campinas;
     }
 
@@ -109,7 +109,7 @@ public class Cidadao {
         return sintomas;
     }
 
-    public void setSintomas(ArrayList<Sintomas> sintomas) {
+    private void setSintomas(ArrayList<Sintomas> sintomas) {
         this.sintomas = sintomas;
     }
 
@@ -117,7 +117,7 @@ public class Cidadao {
         return regiao;
     }
 
-    public void setRegiao(Regiao regiao) {
+    private void setRegiao(Regiao regiao) {
         this.regiao = regiao;
     }
 
@@ -125,23 +125,23 @@ public class Cidadao {
         return convenio;
     }
 
-    public void setConvenio(boolean convenio) {
+    private void setConvenio(boolean convenio) {
         this.convenio = convenio;
     }
 
     @Override
         public String toString() {
         String out = "";
-        out += "Informacoes do Cidadao " + this.getNome();
-        out += "\n  * cpf: ";
-        out += "\n  * idade: ";
-        out += "\n  * login: ";
-        out += "\n  * telefone: ";
-        out += "\n  * email: ";
-        out += "\n  * sexo: ";
-        out += "\n  * Mora em Campinas? ";
-        out += "\n  * Regiao em que mora: ";
-        out += "\n  * Possui convênio privado? ";
+        out += "Informacoes do Cidadao " + getNome();
+        out += "\n  * cpf: " + getCpf();
+        out += "\n  * idade: " + Integer.toString(getIdade());
+        out += "\n  * login: " + getLogin();
+        out += "\n  * telefone: " + getTelefone();
+        out += "\n  * email: " + getEmail();
+        out += "\n  * sexo: " + getSexo();
+        out += "\n  * Mora em Campinas? " + (isCampinas() ? "Sim." : "Nao.");
+        out += "\n  * Regiao em que mora: " + getRegiao().toString();
+        out += "\n  * Possui convênio privado? " + (hasConvenio() ? "Sim." : "Nao.");
         return out;
     }
 }
