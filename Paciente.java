@@ -11,9 +11,15 @@ public class Paciente extends Cidadao {
     private boolean isGrupoDeRisco;
     private boolean testadoPositivamente;
     private String tempoDeTratamento = "0 dias.";
+    
+    public final static int RISCO_MEDIO = 3;
+    public final static int RISCO_ALTO = 6;
 
-    public Paciente(String nome, String cpf, String login, String senha, int idade, String telefone, String email, String sexo, ArrayList<Sintomas> sintomas, boolean isCampinas, Regiao regiao, boolean convenio, double massaCorporal, boolean hasDoencasCronicas, boolean isFumante, boolean testadoPositivamente) {
-        super(nome, cpf, login, senha, idade, telefone, email, sexo, sintomas, isCampinas, regiao, convenio);
+    public Paciente(Cidadao cidadao, double massaCorporal, 
+    		boolean hasDoencasCronicas, boolean isFumante, boolean testadoPositivamente) {
+        super(cidadao.getNome(), cidadao.getCpf(), cidadao.getLogin(), cidadao.getSenha(), cidadao.getIdade(),
+        		cidadao.getTelefone(), cidadao.getEmail(), cidadao.getSexo(), cidadao.getSintomas(),
+        		cidadao.isCampinas(), cidadao.getRegiao(), cidadao.getConvenio());
         this.massaCorporal = massaCorporal;
         this.hasDoencasCronicas = hasDoencasCronicas;
         this.isFumante = isFumante;
@@ -54,11 +60,11 @@ public class Paciente extends Cidadao {
     private void setSeveridade(QuadroDeSaude saude, ArrayList<Sintomas> sintomas) {
         if (saude == QuadroDeSaude.SAUDAVEL) severidade = "nenhuma";
         int risco = Sintomas.GravidadeCovid(sintomas);
-        if (risco < 4 && !this.isGrupoDeRisco) {
+        if (risco <= RISCO_MEDIO && !this.isGrupoDeRisco) {
             if (saude == QuadroDeSaude.SUSPEITA) severidade = "potencialmente leve";
             else severidade = "leve";
         }
-        else if (risco < 6 && !this.isGrupoDeRisco) {
+        else if (risco < RISCO_ALTO && !this.isGrupoDeRisco) {
             if (saude == QuadroDeSaude.SUSPEITA) severidade = "potencialmente mediana";
             else severidade = "mediana";
         }
@@ -106,11 +112,11 @@ public class Paciente extends Cidadao {
         out += super.toString();
         out += "\nInformacoes do Paciente " + super.getNome();
         out += "\n  * Massa corporal: " + String.format("%.2f", getMassaCorporal());
-        out += "\n  * Possui doencas crÃ´nicas? " + (hasDoencasCronicas() ? "Sim." : "Nao.");
-        out += "\n  * Ã‰ fumante? " + (isFumante() ? "Sim." : "Nao.");
-        out += "\n  * Ã‰ grupo de risco? " + (isGrupoDeRisco() ? "Sim." : "Nao.");
-        out += "\n  * Riscos Ã  saÃºde: " + getSeveridade();
-        out += "\n  * Tempo de tratamento necessÃ¡rio: " + getTempoDeTratamento();
+        out += "\n  * Possui doencas crônicas? " + (hasDoencasCronicas() ? "Sim." : "Nao.");
+        out += "\n  * É fumante? " + (isFumante() ? "Sim." : "Nao.");
+        out += "\n  * É grupo de risco? " + (isGrupoDeRisco() ? "Sim." : "Nao.");
+        out += "\n  * Riscos à saúde: " + getSeveridade();
+        out += "\n  * Tempo de tratamento necessário: " + getTempoDeTratamento();
         return out;
     }
 }

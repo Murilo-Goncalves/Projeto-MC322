@@ -1,6 +1,7 @@
 package Projeto1;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Hospital {
     private String nome;
@@ -9,9 +10,10 @@ public class Hospital {
     private ArrayList<Paciente> pacientes;
 
     Hospital(String nome, int capacidadeLeitos, Regiao regiao) {
-        this.nome = nome;
+    	this.nome = nome;
         this.capacidadeLeitos = capacidadeLeitos;
         this.regiao = regiao;
+        this.pacientes = new ArrayList();
     }
 
     // TODO CONSTRUTORES
@@ -21,18 +23,35 @@ public class Hospital {
 
     public boolean testeCovid(Cidadao cidadao)
     {
-        // ta vazio porra
+        int numeroDeSintomas = cidadao.getSintomas().size();
+        
+        if (numeroDeSintomas >= Paciente.RISCO_MEDIO || cidadao.getSintomas().stream().anyMatch(sintoma -> "grave".equals(sintoma.getGravidade()))) {
+        	System.out.println("Nos diga sua massa corporal: \n");
+        	Scanner var = new Scanner(System.in);
+        	double massaCorporal = var.nextDouble();
+        	System.out.println("Você possui doenças Crônicas? (responda com true ou false) \n");
+        	boolean hasDoencasCronicas = var.nextBoolean();
+        	System.out.println("É fumante? (responda com true ou false)");
+        	boolean isFumante = var.nextBoolean();
+        	
+        	Paciente paciente = new Paciente(cidadao, massaCorporal, hasDoencasCronicas, isFumante, true);
+        	pacientes.add(paciente);
+        	
+        	var.close();
+        	return true;
+        }
+    	
         return false;
     }
 
     public boolean isLotado() {
         if (pacientes.size() == capacidadeLeitos)
         {
-            System.out.println("O hospital estÃ¡ sem leitos de COVID disponÃ­veis.");
+            System.out.println("O hospital está sem leitos de COVID disponíveis.");
             return true;
         }
 
-        System.out.println("O hospital possui leitos de COVID disponÃ­veis.");
+        System.out.println("O hospital possui leitos de COVID disponíveis.");
         return false;
     }
 
@@ -40,7 +59,7 @@ public class Hospital {
         return nome;
     }
 
-    public void setNome(String nome) {
+    private void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -48,7 +67,7 @@ public class Hospital {
         return capacidadeLeitos;
     }
 
-    public void setCapacidadeLeitos(int capacidadeLeitos) {
+    private void setCapacidadeLeitos(int capacidadeLeitos) {
         this.capacidadeLeitos = capacidadeLeitos;
     }
 
@@ -56,11 +75,12 @@ public class Hospital {
         return regiao;
     }
 
-    public void setRegiao(Regiao regiao) {
+    private void setRegiao(Regiao regiao) {
         this.regiao = regiao;
     }
 
     public ArrayList<Paciente> getPacientes() {
         return pacientes;
     }
+    
 }

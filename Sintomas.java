@@ -2,7 +2,7 @@ package Projeto1;
 import java.util.ArrayList;
 
 public enum Sintomas {
-	// InformaÃ§Ãµes retiradas do site: https://coronavirus.saude.gov.br/sobre-a-doenca
+	// Informações retiradas do site: https://coronavirus.saude.gov.br/sobre-a-doenca
 	FEBRE("comum", "leve"),
 	TOSSE_SECA("comum", "leve"),
 	CANSACO("comum", "leve"),
@@ -43,11 +43,15 @@ public enum Sintomas {
 		return (int) nota;
 	}
 
-	// Retiraria esse mÃ©todo
+	// Retiraria esse método
 	public static void isSuspeitaCovid(ArrayList<Sintomas> sintomas) {
 		if(sintomas.isEmpty())
 		{System.out.println("Cidadao nao possui COVID");}
-		else {System.out.println("Cidadao estÃ¡ com suspeita de COVID");}
+		else {System.out.println("Cidadao está com suspeita de COVID");}
+	}
+	
+	public String toString() {
+		return this.name();
 	}
 
 }

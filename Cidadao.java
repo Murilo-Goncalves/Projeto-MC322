@@ -15,9 +15,11 @@ public class Cidadao {
     private ArrayList<Sintomas> sintomas;
     private boolean isCampinas;
     private Regiao regiao;
-    private boolean convenio;
+    private Convenio convenio;
 
-    public Cidadao(String nome, String cpf, String login, String senha, int idade, String telefone, String email, String sexo, ArrayList<Sintomas> sintomas, boolean isCampinas, Regiao regiao, boolean convenio) {
+    public Cidadao(String nome, String cpf, String login, String senha,
+    		int idade, String telefone, String email, String sexo, ArrayList<Sintomas> sintomas, 
+    		boolean isCampinas, Regiao regiao, Convenio convenio) {
         this.nome = nome;
         this.cpf = cpf;
         this.login = login;
@@ -122,10 +124,14 @@ public class Cidadao {
     }
 
     public boolean hasConvenio() {
-        return convenio;
+        return !Convenio.SEM_CONVENIO.equals(convenio);
+    }
+    
+    public Convenio getConvenio() {
+    	return convenio;
     }
 
-    private void setConvenio(boolean convenio) {
+    private void setConvenio(Convenio convenio) {
         this.convenio = convenio;
     }
 
@@ -141,7 +147,7 @@ public class Cidadao {
         out += "\n  * sexo: " + getSexo();
         out += "\n  * Mora em Campinas? " + (isCampinas() ? "Sim." : "Nao.");
         out += "\n  * Regiao em que mora: " + getRegiao().toString();
-        out += "\n  * Possui convÃªnio privado? " + (hasConvenio() ? "Sim." : "Nao.");
+        out += "\n  * Possui convênio privado? " + (hasConvenio() ? "Sim." : "Nao.");
         return out;
     }
 }
