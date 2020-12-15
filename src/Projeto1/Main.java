@@ -2,8 +2,6 @@ package Projeto1;
 
 import java.util.ArrayList;
 
-import Projeto1.Hospital;
-
 public class Main {
     public static void main (String[] args) {
     	//Criando Cidade
@@ -31,15 +29,15 @@ public class Main {
     		Hospital hospitalIndicado = campinas.procurarHospital(airton);
 
     		if (hospitalIndicado instanceof HospitalPublico) {
-    				Hospital HospitalPublico = hospitalIndicado;
-    				System.out.println(HospitalPublico.getPacientes().get(0).toString());
+    				Hospital hospitalPublico = hospitalIndicado;
+    				System.out.println(hospitalPublico.getPacientes().get(0).toString());
     				System.out.println("\nO hospital indicado para o paciente é o seguinte:");
     				System.out.println(hospitalIndicado.toString());
     		} 
     		
     		if (hospitalIndicado instanceof HospitalPrivado) {
-    				Hospital HospitalPrivado = hospitalIndicado;
-    				System.out.println(HospitalPrivado.getPacientes().get(0).toString());
+    				Hospital hospitalPrivado = hospitalIndicado;
+    				System.out.println(hospitalPrivado.getPacientes().get(0).toString());
     				System.out.println("\nO hospital indicado para o paciente é o seguinte:");
     				System.out.println(hospitalIndicado.toString());
 			}
