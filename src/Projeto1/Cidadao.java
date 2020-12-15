@@ -1,7 +1,6 @@
 package Projeto1;
 
 import java.util.ArrayList;
-
 public class Cidadao {
     private String nome;
     private String cpf;
@@ -11,15 +10,13 @@ public class Cidadao {
     private String telefone;
     private String email;
     private String sexo;
-
     private ArrayList<Sintomas> sintomas;
-    private boolean isCampinas;
     private Regiao regiao;
     private Convenio convenio;
 
     public Cidadao(String nome, String cpf, String login, String senha,
-    		int idade, String telefone, String email, String sexo, ArrayList<Sintomas> sintomas, 
-    		boolean isCampinas, Regiao regiao, Convenio convenio) {
+                   int idade, String telefone, String email, String sexo, ArrayList<Sintomas> sintomas,
+                   Regiao regiao, Convenio convenio) {
         this.nome = nome;
         this.cpf = cpf;
         this.login = login;
@@ -29,7 +26,6 @@ public class Cidadao {
         this.email = email;
         this.sexo = sexo;
         this.sintomas = sintomas;
-        this.isCampinas = isCampinas;
         this.regiao = regiao;
         this.convenio = convenio;
     }
@@ -38,7 +34,7 @@ public class Cidadao {
         return nome;
     }
 
-    private void setNome(String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -46,7 +42,7 @@ public class Cidadao {
         return cpf;
     }
 
-    private void setCpf(String cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -54,7 +50,7 @@ public class Cidadao {
         return login;
     }
 
-    private void setLogin(String login) {
+    public void setLogin(String login) {
         this.login = login;
     }
 
@@ -62,7 +58,7 @@ public class Cidadao {
         return senha;
     }
 
-    private void setSenha(String senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 
@@ -70,7 +66,7 @@ public class Cidadao {
         return idade;
     }
 
-    private void setIdade(int idade) {
+    public void setIdade(int idade) {
         this.idade = idade;
     }
 
@@ -78,7 +74,7 @@ public class Cidadao {
         return telefone;
     }
 
-    private void setTelefone(String telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -86,7 +82,7 @@ public class Cidadao {
         return email;
     }
 
-    private void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -94,24 +90,15 @@ public class Cidadao {
         return sexo;
     }
 
-    private void setSexo(String sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
-    }
-
-
-    public boolean isCampinas() {
-        return isCampinas;
-    }
-
-    private void setCampinas(boolean campinas) {
-        isCampinas = campinas;
     }
 
     public ArrayList<Sintomas> getSintomas() {
         return sintomas;
     }
 
-    private void setSintomas(ArrayList<Sintomas> sintomas) {
+    public void setSintomas(ArrayList<Sintomas> sintomas) {
         this.sintomas = sintomas;
     }
 
@@ -119,7 +106,7 @@ public class Cidadao {
         return regiao;
     }
 
-    private void setRegiao(Regiao regiao) {
+    public void setRegiao(Regiao regiao) {
         this.regiao = regiao;
     }
 
@@ -131,7 +118,7 @@ public class Cidadao {
     	return convenio;
     }
 
-    private void setConvenio(Convenio convenio) {
+    public void setConvenio(Convenio convenio) {
         this.convenio = convenio;
     }
 
@@ -145,9 +132,8 @@ public class Cidadao {
         out += "\n  * telefone: " + getTelefone();
         out += "\n  * email: " + getEmail();
         out += "\n  * sexo: " + getSexo();
-        out += "\n  * Mora em Campinas? " + (isCampinas() ? "Sim." : "Nao.");
         out += "\n  * Regiao em que mora: " + getRegiao().toString();
-        out += "\n  * Possui convênio privado? " + (hasConvenio() ? "Sim." : "Nao.");
+        out += "\n  * Possui convÃªnio privado? " + (hasConvenio() ? "Sim." : "Nao.");
         return out;
     }
 }

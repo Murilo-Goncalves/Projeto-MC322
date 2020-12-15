@@ -13,13 +13,8 @@ public class Hospital {
     	this.nome = nome;
         this.capacidadeLeitos = capacidadeLeitos;
         this.regiao = regiao;
-        this.pacientes = new ArrayList();
+        this.pacientes = new ArrayList<Paciente>();
     }
-
-    // TODO CONSTRUTORES
-    // TODO TOSTRING
-    // TODO ADD PACIENTE
-    // TODO REMOVER PACIENTE
 
     public boolean testeCovid(Cidadao cidadao)
     {
@@ -29,29 +24,36 @@ public class Hospital {
         	System.out.println("Nos diga sua massa corporal: \n");
         	Scanner var = new Scanner(System.in);
         	double massaCorporal = var.nextDouble();
-        	System.out.println("VocÍ possui doenÁas CrÙnicas? (responda com true ou false) \n");
-        	boolean hasDoencasCronicas = var.nextBoolean();
-        	System.out.println("… fumante? (responda com true ou false)");
-        	boolean isFumante = var.nextBoolean();
-        	
-        	Paciente paciente = new Paciente(cidadao, massaCorporal, hasDoencasCronicas, isFumante, true);
+        	System.out.println("Voc√™ possui doen√ßas cr√¥nicas? (responda com 'sim' se possuir) \n");
+        	var.nextLine();
+        	String hasDoencasCronicas = var.nextLine();
+        	System.out.println("√â fumante? (responda com 'sim' se for)");
+        	String isFumante = var.nextLine();
+        	Paciente paciente = new Paciente(cidadao, massaCorporal, hasDoencasCronicas == "sim" ? true : false, isFumante == "sim" ? true : false, true);
         	pacientes.add(paciente);
         	
         	var.close();
         	return true;
         }
-    	
-        return false;
+        
+        else {
+        	System.out.println("Fique em casa!");
+        	return false;
+        }
+    }
+    
+    public boolean removerPaciente(Paciente paciente) {
+    	return pacientes.remove(paciente);
     }
 
     public boolean isLotado() {
         if (pacientes.size() == capacidadeLeitos)
         {
-            System.out.println("O hospital est· sem leitos de COVID disponÌveis.");
+            System.out.println("O hospital est√° sem leitos de COVID dispon√≠veis.");
             return true;
         }
 
-        System.out.println("O hospital possui leitos de COVID disponÌveis.");
+        System.out.println("O hospital possui leitos de COVID dispon√≠veis.");
         return false;
     }
 
@@ -59,7 +61,7 @@ public class Hospital {
         return nome;
     }
 
-    private void setNome(String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -67,7 +69,7 @@ public class Hospital {
         return capacidadeLeitos;
     }
 
-    private void setCapacidadeLeitos(int capacidadeLeitos) {
+    public void setCapacidadeLeitos(int capacidadeLeitos) {
         this.capacidadeLeitos = capacidadeLeitos;
     }
 
@@ -75,7 +77,7 @@ public class Hospital {
         return regiao;
     }
 
-    private void setRegiao(Regiao regiao) {
+    public void setRegiao(Regiao regiao) {
         this.regiao = regiao;
     }
 
@@ -83,4 +85,14 @@ public class Hospital {
         return pacientes;
     }
     
+    @Override
+    public String toString() {
+    	String out = "Informa√ß√µes do hospital " + getNome() + "\n";
+    	out += "  * Capacidade de leitos: " + getCapacidadeLeitos() + "\n";
+    	out += "  * Regi√£o: " + getRegiao() + "\n";
+    	out += "  * Nomes dos pacientes no hospital:\n";
+    	for (Paciente paciente : pacientes) out += "  * " + paciente.getNome() + "\n";
+    	
+    	return out;
+    }
 }

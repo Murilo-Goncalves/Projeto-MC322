@@ -5,6 +5,7 @@ public enum QuadroDeSaude {
 	SUSPEITA,
 	DOENTE;
 	
+	@Override
 	public String toString() {
 		return this.name();
 	}
