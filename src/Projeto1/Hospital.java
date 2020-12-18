@@ -9,7 +9,7 @@ public class Hospital {
     private Regiao regiao;
     private ArrayList<Paciente> pacientes;
 
-    Hospital(String nome, int capacidadeLeitos, Regiao regiao) {
+    public Hospital(String nome, int capacidadeLeitos, Regiao regiao) {
     	this.nome = nome;
         this.capacidadeLeitos = capacidadeLeitos;
         this.regiao = regiao;
