@@ -10,8 +10,8 @@ public class Main {
     	//Criando Cidadaos de Campinas
     	ArrayList<Sintomas> sintomasAirton = new ArrayList<Sintomas>();
     	sintomasAirton.add(Sintomas.CANSACO);
-    	sintomasAirton.add(Sintomas.DOR_DE_CABECA);
-    	sintomasAirton.add(Sintomas.PERDA_DE_FALA_OU_MOVIMENTO);
+    	sintomasAirton.add(Sintomas.DOR_DE_CABECA_OU_NO_CORPO);
+    	sintomasAirton.add(Sintomas.FALTA_DE_AR);
     	Cidadao airton = new Cidadao("Airton","123.456.678-42","airtoncl","1234",
     								20,"19999397960","airtoncl@hotmail.com","masculino",
     								sintomasAirton, Regiao.NORTE, Convenio.UNIMED);
