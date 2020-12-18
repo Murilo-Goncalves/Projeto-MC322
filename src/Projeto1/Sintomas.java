@@ -2,19 +2,20 @@ package Projeto1;
 import java.util.ArrayList;
 
 public enum Sintomas {
-	// Informações retiradas do site: https://coronavirus.saude.gov.br/sobre-a-doenca
+	// Fonte: https://www.cecom.unicamp.br/covid-19-coronavirus-informacoes-e-esclarecimentos/#2. Acesso em:
+	CANSACO("comum", "leve"),
 	FEBRE("comum", "leve"),
 	TOSSE_SECA("comum", "leve"),
-	CANSACO("comum", "leve"),
-	DOR_DE_GARGANTA("incomum", "leve"),
+	DOR_DE_CABECA_OU_NO_CORPO("comum", "leve"),
+	DOR_DE_GARGANTA("comum", "leve"),
+	CONGESTAO_NASAL_OU_CORIZA ("comum", "leve"),
+	PERDA_PALADAR_OU_OLFATO("comum", "leve"),
 	DIARREIA("incomum", "leve"),
-	CONJUNTIVITE("incomum", "leve"),
-	DOR_DE_CABECA("incomum", "leve"),
-	PERDA_PALADAR_OU_OLFATO("incomum", "leve"),
-	ERUPCAO_CUTANEA("incomum", "leve"),
+	CONJUNTIVITE("incomum","leve"),
+	ERUPCOES_CUTANEAS("incomum","leve"),
+	PERDA_DA_FALA("incomum","grave"),
 	FALTA_DE_AR("incomum", "grave"),
-	DOR_OU_PRESSAO_NO_PEITO("incomum", "grave"),
-	PERDA_DE_FALA_OU_MOVIMENTO("incomum", "grave");
+	DOR_NO_PEITO("incomum", "grave");
 	
 	private final String freq;
 	private final String gravidade;
