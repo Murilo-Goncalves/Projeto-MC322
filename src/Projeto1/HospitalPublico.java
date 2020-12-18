@@ -3,7 +3,7 @@ package Projeto1;
 public class HospitalPublico extends Hospital {
 	private Convenio ConvenioAtendido;
 	
-    HospitalPublico(String nome, int capacidadeLeitos, Regiao regiao, Convenio convenio) {
+    public HospitalPublico(String nome, int capacidadeLeitos, Regiao regiao, Convenio convenio) {
     	super(nome, capacidadeLeitos, regiao);
         this.ConvenioAtendido = convenio;
     }
