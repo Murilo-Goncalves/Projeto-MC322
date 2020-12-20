@@ -5,9 +5,4 @@ public enum Regiao {
 	LESTE,
 	OESTE,
 	CENTRO;
-
-	@Override
-	public String toString() {
-		return this.name();
-	}
 }

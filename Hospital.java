@@ -9,6 +9,11 @@ public class Hospital {
     private Regiao regiao;
     private ArrayList<Paciente> pacientes;
 
+    // Constants
+    public final static int RISCO_MEDIO = 3;
+    public final static int RISCO_ALTO = 6;
+
+    // Construtor
     public Hospital(String nome, int capacidadeLeitos, Regiao regiao) {
     	this.nome = nome;
         this.capacidadeLeitos = capacidadeLeitos;
@@ -16,26 +21,32 @@ public class Hospital {
         this.pacientes = new ArrayList<Paciente>();
     }
 
-    public boolean testeCovid(Cidadao cidadao)
+    // Questionário para o cidadão para decidir se será internado, 
+    // além de retornar se este possui COVID ou não
+    public boolean ficharPaciente(Cidadao cidadao)
     {
         int numeroDeSintomas = cidadao.getSintomas().size();
         
-        if (numeroDeSintomas >= Paciente.RISCO_MEDIO || cidadao.getSintomas().stream().anyMatch(sintoma -> "grave".equals(sintoma.getGravidade()))) {
-        	System.out.println("Nos diga sua massa corporal (kg):");
+        if (numeroDeSintomas >= RISCO_MEDIO || cidadao.getSintomas().stream().anyMatch(sintoma -> "grave".equals(sintoma.getGravidade()))) {
         	Scanner var = new Scanner(System.in);
-        	double massaCorporal = var.nextDouble();
-        	System.out.println("Você possui doenças crônicas? (responda com 'sim' se possuir)");
+            
+            System.out.println("Nos diga sua massa corporal (kg):");
+            double massaCorporal = var.nextDouble();
+            
+            System.out.println("Você possui doenças crônicas? (responda com 'sim' se possuir)");
         	var.nextLine();
-        	String hasDoencasCronicas = var.nextLine();
-        	System.out.println("É fumante? (responda com 'sim' se for)");
+            String hasDoencasCronicas = var.nextLine();
+            
+            System.out.println("É fumante? (responda com 'sim' se for)");
         	String isFumante = var.nextLine();
+            
             System.out.println("Rebeceu teste para covid e teve resultado positivo? (responda com 'sim' se foi)");
             String temCovid = var.nextLine();
-        	Paciente paciente = new Paciente(cidadao, massaCorporal, hasDoencasCronicas == "sim" , isFumante == "sim", temCovid == "sim");
+
+        	Paciente paciente = new Paciente(cidadao, massaCorporal, hasDoencasCronicas.equals("sim") , isFumante.equals("sim"), temCovid.equals("sim"));
         	pacientes.add(paciente);
         	
-        	// var.close();
-        	return temCovid == "sim";
+        	return temCovid.equals("sim");
         }
         
         else {
@@ -53,6 +64,19 @@ public class Hospital {
         return false;
     }
 
+    // Método toString
+    @Override
+    public String toString() {
+    	String out = "Informações do hospital " + getNome() + "\n";
+    	out += "  * Capacidade de leitos: " + getCapacidadeLeitos() + "\n";
+    	out += "  * Região: " + getRegiao() + "\n";
+    	out += "Nomes dos pacientes no hospital:\n";
+    	for (Paciente paciente : pacientes) out += "  * " + paciente.getNome() + "\n";
+    	
+    	return out;
+    }
+
+    // Getters e setters
     public String getNome() {
         return nome;
     }
@@ -79,16 +103,5 @@ public class Hospital {
 
     public ArrayList<Paciente> getPacientes() {
         return pacientes;
-    }
-    
-    @Override
-    public String toString() {
-    	String out = "Informações do hospital " + getNome() + "\n";
-    	out += "  * Capacidade de leitos: " + getCapacidadeLeitos() + "\n";
-    	out += "  * Região: " + getRegiao() + "\n";
-    	out += "Nomes dos pacientes no hospital:\n";
-    	for (Paciente paciente : pacientes) out += "  * " + paciente.getNome() + "\n";
-    	
-    	return out;
     }
 }

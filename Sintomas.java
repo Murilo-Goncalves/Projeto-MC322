@@ -2,7 +2,7 @@ package Projeto1;
 import java.util.ArrayList;
 
 public enum Sintomas {
-	// Fonte: https://www.cecom.unicamp.br/covid-19-coronavirus-informacoes-e-esclarecimentos/#2. Acesso em:
+	// Fonte: https://www.cecom.unicamp.br/covid-19-coronavirus-informacoes-e-esclarecimentos/#2
 	CANSACO("comum", "leve"),
 	FEBRE("comum", "leve"),
 	TOSSE_SECA("comum", "leve"),
@@ -29,11 +29,11 @@ public enum Sintomas {
 	
 	public String getFrequencia() { return freq; }
 
-	// retorna nota de gravidade, de 0 a 10..
+	// Retorna nota de gravidade, de 0 a 10
 	public static int gravidadeCovid (ArrayList<Sintomas> sintomas) {
 		double nota = 0.0;
 		int nSintomas = sintomas.size();
-		if (nSintomas == 0) return 0;	// se nao tiver sintomas.
+		if (nSintomas == 0) return 0;	// se nao tiver sintomas
 		for (int i = 0; i < nSintomas; i++) {
 			if (sintomas.get(i).getGravidade().equals("leve")) nota += 0.7;
 			else nota += 5;

@@ -1,0 +1,73 @@
+\documentclass[10pt]{article}
+
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{underscore}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{textcomp}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{listings}
+\lstdefinestyle{python}{
+  basicstyle=\footnotesize,
+  language=Python,
+  numbers=none,
+  stepnumber=1,
+  numbersep=1pt,
+  tabsize=4,
+  showspaces=false,
+  showstringspaces=false
+}
+
+\begin{document}
+\title{Relatório - Projeto 1\\
+ 	   MC322 - Programação Orientada a Objetos\\
+ 	   \textbf{Assistência e mapeamento do COVID-19 por municípios}
+}
+ 	   
+\author{\textbf{Grupo 13:}\\
+		Airton Cardoso Lana \ \ \ \ RA: 212234\\
+		Caio Vinicius Castro dos Santos \ \ \ \ RA: 214188\\
+		Ian Loron de Almeida \ \ \ \ RA: 198933\\
+		Murilo Gonçalves \ \ \ \ RA: 203904\\
+}
+\date{}
+
+\maketitle
+
+\section{Resumo}
+\hspace{2em} Neste projeto objetiva-se criar um sistema que ofereça estrutura para o mapeamento e prevenção da Covid-19 a nível municipal, além de orientar os cidadãos que tiverem algum sintoma relacionado à doença a buscar a orientação médica mais próxima. 
+
+\hspace{2em} Nesse contexto, o sistema deve fornecer uma pré-avaliação, baseada nos sintomas descritos pelo cidadão cadastrado, indicando a frequência e gravidade de seu quadro. Dessa forma, a partir de sua localização na cidade, é possível indicar qual o hospital mais próximo dessa pessoa e a partir do diagnóstico realizado, o cidadão também tornar-se um paciente para o sistema.
+
+\hspace{2em} Entretanto, somente a localização não é suficiente para indicar o local mais adequado para uma pessoa buscar ajuda, assim, também são levados em conta fatores do cidadão, como se possui convênio, e fatores do hospital, por exemplo, se há disponibilidade de leitos no momento.
+
+\hspace{2em} Além disso, também há a implementação da secretaria de saúde, responsável por adicionar uma nova cidade no sistema ou alterar o número de hospitais do município, caso um novo seja criado ou haja a desativação de algum hospital existente.
+
+\hspace{2em} Assim, o mapeamento dos cidadãos será importante para indicar concentração de infectados, pessoas que estão saudáveis e pessoas que se recuperaram, possibilitando uma distribuição de recursos e insumos muito melhor, além de evitar óbitos ou casos mais graves da doença através de diagnóstico precoce, já que o cidadão não perderá tempo indo em um hospital muito longe ou em que não possa ser atendido.
+
+\section{Funções do Sistema}
+O sistema deve ser capaz de:
+\begin{itemize}
+\item Cadastrar cidadão;
+\item Cadastrar cidade;
+\item Adicionar/Remover hospital da cidade;
+\item Identificar os hospitais públicos e privados da cidade e identificar os planos de saúde que eles trabalham;
+\item Contabilizar cidadãos com COVID-19;
+\item Contabilizar número de casos por região da cidade;
+\item Identificar suspeita de COVID-19 de um cidadão através dos sintomas que o Cidadão informar no sistema;
+\item Identificar hospital mais próximo e com leitos disponíveis a um cidadão;
+\item Retorna a gravidade dos sintomas que o Paciente tem;
+\item Determinar se um cidadao é grupo de risco, de acordo com as informacoes fornecidas pelo mesmo;
+\end{itemize}	
+
+
+
+No entanto, os itens sublinhados serão implementados apenas na próxima fase.
+
+
+\end{document}

@@ -1,6 +1,7 @@
 package Projeto1;
 
 import java.util.ArrayList;
+
 public class Cidadao {
     private String nome;
     private String cpf;
@@ -14,9 +15,9 @@ public class Cidadao {
     private Regiao regiao;
     private Convenio convenio;
 
-    public Cidadao(String nome, String cpf, String login, String senha,
-                   int idade, String telefone, String email, String sexo, ArrayList<Sintomas> sintomas,
-                   Regiao regiao, Convenio convenio) {
+    // Construtor
+    public Cidadao(String nome, String cpf, String login, String senha, int idade, String telefone, String email,
+                   String sexo, ArrayList<Sintomas> sintomas, Regiao regiao, Convenio convenio) {
         this.nome = nome;
         this.cpf = cpf;
         this.login = login;
@@ -30,6 +31,23 @@ public class Cidadao {
         this.convenio = convenio;
     }
 
+    // Método toString
+    @Override
+    public String toString() {
+        String out = "";
+        out += "Informacoes do Cidadao " + getNome();
+        out += "\n  * cpf: " + getCpf();
+        out += "\n  * idade: " + Integer.toString(getIdade());
+        out += "\n  * login: " + getLogin();
+        out += "\n  * telefone: " + getTelefone();
+        out += "\n  * email: " + getEmail();
+        out += "\n  * sexo: " + getSexo();
+        out += "\n  * Regiao em que mora: " + getRegiao().toString();
+        out += "\n  * Possui convênio privado? " + (hasConvenio() ? "Sim." : "Nao.");
+        return out;
+    }
+
+    // Getters e setters 
     public String getNome() {
         return nome;
     }
@@ -113,27 +131,12 @@ public class Cidadao {
     public boolean hasConvenio() {
         return !Convenio.SEM_CONVENIO.equals(convenio);
     }
-    
+
     public Convenio getConvenio() {
-    	return convenio;
+        return convenio;
     }
 
     public void setConvenio(Convenio convenio) {
         this.convenio = convenio;
-    }
-
-    @Override
-    public String toString() {
-        String out = "";
-        out += "Informacoes do Cidadao " + getNome();
-        out += "\n  * cpf: " + getCpf();
-        out += "\n  * idade: " + Integer.toString(getIdade());
-        out += "\n  * login: " + getLogin();
-        out += "\n  * telefone: " + getTelefone();
-        out += "\n  * email: " + getEmail();
-        out += "\n  * sexo: " + getSexo();
-        out += "\n  * Regiao em que mora: " + getRegiao().toString();
-        out += "\n  * Possui convênio privado? " + (hasConvenio() ? "Sim." : "Nao.");
-        return out;
     }
 }

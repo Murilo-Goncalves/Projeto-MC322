@@ -11,15 +11,12 @@ public class Paciente extends Cidadao {
     private boolean isGrupoDeRisco;
     private boolean testadoPositivamente;
     private String tempoDeTratamento;
-    
-    public final static int RISCO_MEDIO = 3;
-    public final static int RISCO_ALTO = 6;
 
-    public Paciente(Cidadao cidadao, double massaCorporal, 
-    		boolean hasDoencasCronicas, boolean isFumante, boolean testadoPositivamente) {
+    public Paciente(Cidadao cidadao, double massaCorporal, boolean hasDoencasCronicas, boolean isFumante, 
+                    boolean testadoPositivamente) {
         super(cidadao.getNome(), cidadao.getCpf(), cidadao.getLogin(), cidadao.getSenha(), cidadao.getIdade(),
-        		cidadao.getTelefone(), cidadao.getEmail(), cidadao.getSexo(), cidadao.getSintomas(),
-        		cidadao.getRegiao(), cidadao.getConvenio());
+        cidadao.getTelefone(), cidadao.getEmail(), cidadao.getSexo(), cidadao.getSintomas(),
+        cidadao.getRegiao(), cidadao.getConvenio());
         this.massaCorporal = massaCorporal;
         this.hasDoencasCronicas = hasDoencasCronicas;
         this.isFumante = isFumante;
@@ -61,11 +58,11 @@ public class Paciente extends Cidadao {
     private void setSeveridade(QuadroDeSaude saude, ArrayList<Sintomas> sintomas) {
         if (saude == QuadroDeSaude.SAUDAVEL) severidade = "nenhuma";
         int risco = Sintomas.gravidadeCovid(sintomas);
-        if (risco <= RISCO_MEDIO && !this.isGrupoDeRisco) {
+        if (risco <= Hospital.RISCO_MEDIO && !this.isGrupoDeRisco) {
             if (saude == QuadroDeSaude.SUSPEITA) severidade = "potencialmente leve";
             else severidade = "leve";
         }
-        else if (risco < RISCO_ALTO && !this.isGrupoDeRisco) {
+        else if (risco < Hospital.RISCO_ALTO && !this.isGrupoDeRisco) {
             if (saude == QuadroDeSaude.SUSPEITA) severidade = "potencialmente mediana";
             else severidade = "mediana";
         }
