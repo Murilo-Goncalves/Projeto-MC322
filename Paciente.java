@@ -12,6 +12,7 @@ public class Paciente extends Cidadao {
     private boolean testadoPositivamente;
     private String tempoDeTratamento;
 
+    // Construtor
     public Paciente(Cidadao cidadao, double massaCorporal, boolean hasDoencasCronicas, boolean isFumante, 
                     boolean testadoPositivamente) {
         super(cidadao.getNome(), cidadao.getCpf(), cidadao.getLogin(), cidadao.getSenha(), cidadao.getIdade(),
@@ -27,6 +28,23 @@ public class Paciente extends Cidadao {
         setTempoDeTratamento(severidade, saude);
     }
 
+    // Método toString
+    @Override
+    public String toString() {
+        String out = "";
+        out += super.toString();
+        out += "\nInformacoes do Paciente " + super.getNome();
+        out += "\n  * Massa corporal (kg): " + String.format("%.2f", getMassaCorporal());
+        out += "\n  * Possui doencas crônicas? " + (hasDoencasCronicas() ? "Sim." : "Nao.");
+        out += "\n  * É fumante? " + (isFumante() ? "Sim." : "Nao.");
+        out += "\n  * Faz parte de grupo de risco? " + (isGrupoDeRisco() ? "Sim." : "Nao.");
+        out += "\n  * Recebeu teste positivo para COVID-19? " + (testadoPositivamente ? "Sim." : "Nao.");
+        out += "\n  * Riscos à saúde: " + getSeveridade();
+        out += "\n  * Tempo de tratamento necessário: " + getTempoDeTratamento();
+        return out;
+    }
+
+    // Getters e setters
     public double getMassaCorporal() {
         return massaCorporal;
     }
@@ -107,18 +125,4 @@ public class Paciente extends Cidadao {
         else tempoDeTratamento = "no momento, nao é necessário tratamento.";
     }
 
-    @Override
-    public String toString() {
-        String out = "";
-        out += super.toString();
-        out += "\nInformacoes do Paciente " + super.getNome();
-        out += "\n  * Massa corporal (kg): " + String.format("%.2f", getMassaCorporal());
-        out += "\n  * Possui doencas crônicas? " + (hasDoencasCronicas() ? "Sim." : "Nao.");
-        out += "\n  * É fumante? " + (isFumante() ? "Sim." : "Nao.");
-        out += "\n  * Faz parte de grupo de risco? " + (isGrupoDeRisco() ? "Sim." : "Nao.");
-        out += "\n  * Recebeu teste positivo para COVID-19? " + (testadoPositivamente ? "Sim." : "Nao.");
-        out += "\n  * Riscos à saúde: " + getSeveridade();
-        out += "\n  * Tempo de tratamento necessário: " + getTempoDeTratamento();
-        return out;
-    }
 }

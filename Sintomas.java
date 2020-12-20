@@ -25,10 +25,6 @@ public enum Sintomas {
 		this.gravidade = gravidade;
 	}
 
-	public String getGravidade() { return gravidade; }
-	
-	public String getFrequencia() { return freq; }
-
 	// Retorna nota de gravidade, de 0 a 10
 	public static int gravidadeCovid (ArrayList<Sintomas> sintomas) {
 		double nota = 0.0;
@@ -40,5 +36,14 @@ public enum Sintomas {
 		}
 		nota = (10 > nota ? nota : 10);
 		return (int) nota;
+	}
+
+	// Getters
+	public String getGravidade() {
+		return gravidade;
+	}
+	
+	public String getFrequencia() {
+		return freq;
 	}
 }

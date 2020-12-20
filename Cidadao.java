@@ -31,6 +31,10 @@ public class Cidadao {
         this.convenio = convenio;
     }
 
+    public boolean hasConvenio() {
+        return !Convenio.SEM_CONVENIO.equals(convenio);
+    }
+
     // Método toString
     @Override
     public String toString() {
@@ -126,10 +130,6 @@ public class Cidadao {
 
     public void setRegiao(Regiao regiao) {
         this.regiao = regiao;
-    }
-
-    public boolean hasConvenio() {
-        return !Convenio.SEM_CONVENIO.equals(convenio);
     }
 
     public Convenio getConvenio() {
