@@ -34,7 +34,7 @@ public class Hospital {
         	Paciente paciente = new Paciente(cidadao, massaCorporal, hasDoencasCronicas == "sim" , isFumante == "sim", temCovid == "sim");
         	pacientes.add(paciente);
         	
-        	var.close();
+        	// var.close();
         	return temCovid == "sim";
         }
         
@@ -49,13 +49,7 @@ public class Hospital {
     }
 
     public boolean isLotado() {
-        if (pacientes.size() == capacidadeLeitos)
-        {
-            System.out.printf("%s %s %s\n", "O hospital ", this.getNome()," está sem leitos de COVID disponíveis.");
-            return true;
-        }
-
-        System.out.printf("%s %s %s\n", "O hospital ", this.getNome(), " possui leitos de COVID disponíveis.");
+        if (pacientes.size() == capacidadeLeitos) return true;
         return false;
     }
 

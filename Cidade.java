@@ -50,8 +50,7 @@ public class Cidade {
 		else {
             System.out.printf("%s %s %s\n","Cidadão", cidadao.getNome(), " está com suspeita de COVID");
             if (cidadao.hasConvenio()) {
-                for (HospitalPrivado hospital : hospitaisPrivados)
-                {
+                for (HospitalPrivado hospital : hospitaisPrivados) {
                     if (hospital.getRegiao().equals(cidadao.getRegiao()) && !hospital.isLotado() && hospital.getConvenioAtendido().equals(cidadao.getConvenio())) {
                     	this.aumentaNCidadaosComCovid(hospital.testeCovid(cidadao));
                         // System.out.println("Encontrado o hospital privado: " + hospital.getNome());
@@ -60,8 +59,7 @@ public class Cidade {
                 }
             }   
 
-            for (HospitalPublico hospital : hospitaisPublicos)
-            {
+            for (HospitalPublico hospital : hospitaisPublicos) {
                 if (hospital.getRegiao().equals(cidadao.getRegiao()) && !hospital.isLotado()) {
                     this.aumentaNCidadaosComCovid(hospital.testeCovid(cidadao));
                     // System.out.println("Encontrado o hospital público: " + hospital.getNome());
@@ -88,11 +86,11 @@ public class Cidade {
 
     public void printHospitalIndicado(Hospital hospitalIndicado) {
         if (hospitalIndicado == null) {
-            System.out.println("Nao há hospitais para indicar.");
+            System.out.println("Nao há hospitais para indicar.\n");
             return;
         }
 
-        if (hospitalIndicado instanceof HospitalPrivado) {
+        else if (hospitalIndicado instanceof HospitalPrivado) {
             Hospital hospitalPrivado = hospitalIndicado;
             System.out.println(hospitalPrivado.getPacientes().get(0).toString());
             System.out.println("\nO hospital indicado para o paciente é:");

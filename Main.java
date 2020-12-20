@@ -45,25 +45,7 @@ public class Main {
     	campinas.adicionaHospital(hospitalPublic);
     	campinas.adicionaHospital(hospitalPublic2);
     	campinas.adicionaHospital(hospitalPriv);
-    	/*
-    	if (campinas.isSuspeita(airton)) {
-			Hospital hospitalIndicado = campinas.procurarHospital(airton);
 
-			if (hospitalIndicado instanceof HospitalPrivado) {
-				Hospital hospitalPrivado = hospitalIndicado;
-				System.out.println(hospitalPrivado.getPacientes().get(0).toString());
-				System.out.println("\nO hospital (privado) indicado para o paciente é:");
-				System.out.println(hospitalIndicado.toString());
-			}
-
-			if (hospitalIndicado instanceof HospitalPublico) {
-				Hospital hospitalPublico = hospitalIndicado;
-				System.out.println(hospitalPublico.getPacientes().get(0).toString());
-				System.out.println("\nO hospital (público) indicado para o paciente é:");
-				System.out.println(hospitalIndicado.toString());
-			}
-		}
-    	 */
 		for (int i = 0; i < campinas.getNumeroCidadaos(); i++) {
 			Cidadao cidadao = campinas.getCidadao(i);
 			if (campinas.isSuspeita(cidadao)) campinas.printHospitalIndicado(campinas.procurarHospital(cidadao));
@@ -75,15 +57,14 @@ public class Main {
 
 /*
 Cidadão Airton  está com suspeita de COVID
-O hospital  HC da UNICAMP  possui leitos de COVID disponíveis.
 Nos diga sua massa corporal (kg):
-45
+80
 Você possui doenças crônicas? (responda com 'sim' se possuir)
-n
+nao
 É fumante? (responda com 'sim' se for)
-n
+nao
 Rebeceu teste para covid e teve resultado positivo? (responda com 'sim' se foi)
-n
+nao
 Informacoes do Cidadao Airton
   * cpf: 123.456.678-42
   * idade: 20
@@ -94,7 +75,7 @@ Informacoes do Cidadao Airton
   * Regiao em que mora: NORTE
   * Possui convênio privado? Sim.
 Informacoes do Paciente Airton
-  * Massa corporal (kg): 45,00
+  * Massa corporal (kg): 80,00
   * Possui doencas crônicas? Nao.
   * É fumante? Nao.
   * Faz parte de grupo de risco? Nao.
@@ -111,17 +92,57 @@ Nomes dos pacientes no hospital:
 Este hospital é público.
 
 Cidadão Ian  está com suspeita de COVID
-O hospital  HUC - Hospital Unimed Campinas  possui leitos de COVID disponíveis.
 Não existem hospitais com leitos disponíveis na região.
 Nao há hospitais para indicar.
+
 Cidadão Murilo  está com suspeita de COVID
-O hospital  HC da UNICAMP  possui leitos de COVID disponíveis.
 Nos diga sua massa corporal (kg):
-Exception in thread "main" java.util.NoSuchElementException
-	at java.base/java.util.Scanner.throwFor(Scanner.java:937)
-	at java.base/java.util.Scanner.next(Scanner.java:1594)
-	at java.base/java.util.Scanner.nextDouble(Scanner.java:2564)
-	at Projeto1.Hospital.testeCovid(Hospital.java:26)
-	at Projeto1.Cidade.procurarHospital(Cidade.java:66)
-	at Projeto1.Main.main(Main.java:69)
+75
+Você possui doenças crônicas? (responda com 'sim' se possuir)
+sim
+É fumante? (responda com 'sim' se for)
+nao
+Rebeceu teste para covid e teve resultado positivo? (responda com 'sim' se foi)
+nao
+Informacoes do Cidadao Airton
+  * cpf: 123.456.678-42
+  * idade: 20
+  * login: airtoncl
+  * telefone: (19)999397-960
+  * email: airtoncl@hotmail.com
+  * sexo: masculino
+  * Regiao em que mora: NORTE
+  * Possui convênio privado? Sim.
+Informacoes do Paciente Airton
+  * Massa corporal (kg): 80,00
+  * Possui doencas crônicas? Nao.
+  * É fumante? Nao.
+  * Faz parte de grupo de risco? Nao.
+  * Recebeu teste positivo para COVID-19? Nao.
+  * Riscos à saúde: potencialmente grave
+  * Tempo de tratamento necessário: cerca de 30 dias, se confirmado que está com covid
+
+O hospital indicado para o paciente é:
+Informações do hospital HC da UNICAMP
+  * Capacidade de leitos: 30
+  * Região: NORTE
+Nomes dos pacientes no hospital:
+  * Airton
+  * Murilo
+Este hospital é público.
+
+Cidadão Caio  está com suspeita de COVID
+Não existem hospitais com leitos disponíveis na região.
+Nao há hospitais para indicar.
+
+Cidade Campinas
+  * Número de cidadaos: 4
+  * Número de hospitais privados: 1
+  * Número de hospitais públicos: 2
+  * Número de cidadaos com COVID: 0
+ Hospitais públicos da cidade:
+  * HC da UNICAMP
+  * Maternidade de Campinas
+ Hospitais privados da cidade:
+  * HUC - Hospital Unimed Campinas
  */
