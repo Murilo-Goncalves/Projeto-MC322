@@ -1,5 +1,4 @@
-package Projeto1;
-public class HospitalPrivado extends Hospital {	
+public class HospitalPrivado extends Hospital {
 	private Convenio convenioAtendido;
     
     // Construtor

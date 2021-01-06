@@ -1,5 +1,3 @@
-package Projeto1;
-
 public enum Convenio {
 	UNIMED, 
 	AMIL,

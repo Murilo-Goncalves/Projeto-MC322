@@ -1,4 +1,4 @@
-package Projeto1;
+
 import java.util.ArrayList;
 
 public enum Sintomas {
