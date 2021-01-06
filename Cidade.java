@@ -6,7 +6,11 @@ public class Cidade {
     private ArrayList<HospitalPublico> hospitaisPublicos;
     private ArrayList<HospitalPrivado> hospitaisPrivados;
     private int numeroCidadaos = 0;
-    private int nCidadaosComCovid = 0;
+    private int nCidadaosComCovidNorte = 0;
+    private int nCidadaosComCovidSul = 0;
+    private int nCidadaosComCovidLeste = 0;
+    private int nCidadaosComCovidOeste = 0;
+    private int nCidadaosComCovidCentro = 0;
     private static int nCidades = 0;
 
     // Construtor
@@ -18,9 +22,18 @@ public class Cidade {
         nCidades++;
     }
 
-    private void aumentaNCidadaosComCovid(boolean temCovid) {
+    private void aumentaNCidadaosComCovid(boolean temCovid, Regiao regiao) {
         if (temCovid)
-            nCidadaosComCovid += 1;
+            if(regiao == Regiao.NORTE)
+                nCidadaosComCovidNorte += 1;
+            if(regiao == Regiao.SUL)
+                nCidadaosComCovidSul += 1;
+            if(regiao == Regiao.LESTE)
+                nCidadaosComCovidLeste += 1;
+            if(regiao == Regiao.OESTE)
+                nCidadaosComCovidOeste += 1;
+            else
+                nCidadaosComCovidCentro += 1;
     }
 
     public void adicionaCidadao(Cidadao novoCidadao) {
@@ -40,7 +53,7 @@ public class Cidade {
             for (HospitalPrivado hospital : hospitaisPrivados) {
                 if (hospital.getRegiao().equals(cidadao.getRegiao()) && !hospital.isLotado()
                     && hospital.getConvenioAtendido().equals(cidadao.getConvenio())) {
-                    this.aumentaNCidadaosComCovid(hospital.ficharPaciente(cidadao));
+                    this.aumentaNCidadaosComCovid(hospital.ficharPaciente(cidadao), cidadao.getRegiao());
                     return hospital;
                 }
             }
@@ -49,7 +62,7 @@ public class Cidade {
         // Se um hospital público não foi encontrado ou o cidadão não possui convênio, buscamos um hospital público
         for (HospitalPublico hospital : hospitaisPublicos) {
             if (hospital.getRegiao().equals(cidadao.getRegiao()) && !hospital.isLotado()) {
-                this.aumentaNCidadaosComCovid(hospital.ficharPaciente(cidadao));
+                this.aumentaNCidadaosComCovid(hospital.ficharPaciente(cidadao), cidadao.getRegiao());
                 return hospital;
             }
         }
@@ -66,15 +79,26 @@ public class Cidade {
         hospitaisPrivados.add(hospital);
     }
 
+    //remover hospitais:
+    public void removeHospital(HospitalPublico hospital){hospitaisPublicos.remove(hospital);}
+
+    public void removeHospital(HospitalPrivado hospital){hospitaisPrivados.remove(hospital);}
+
      // Método toString
     @Override
     public String toString() {
         String out = "";
         out += "Cidade " + nome;
-        out += "\n  * Número de cidadaos: " + Integer.toString(cidadaos.size());
+        out += "\n  * Número de Cidadaos cadastrados: " + Integer.toString(cidadaos.size());
         out += "\n  * Número de hospitais privados: " + hospitaisPrivados.size();
         out += "\n  * Número de hospitais públicos: " + hospitaisPublicos.size();
-        out += "\n  * Número de cidadaos com COVID: " + getNCidadaosComCovid();
+        out += "\n  * Número de cidadaos com COVID no Norte: " + getnCidadaosComCovidNorte();
+        out += "\n  * Número de cidadaos com COVID no Sul: " + getnCidadaosComCovidSul();
+        out += "\n  * Número de cidadaos com COVID no Leste: " + getnCidadaosComCovidLeste();
+        out += "\n  * Número de cidadaos com COVID no Oeste: " + getnCidadaosComCovidOeste();
+        out += "\n  * Número de cidadaos com COVID no Centro: " + getnCidadaosComCovidCentro();
+
+
         out += "\n Hospitais públicos da cidade:\n";
         for (HospitalPublico hospital : hospitaisPublicos)
             out += "  * " + hospital.getNome() + "\n";
@@ -86,8 +110,20 @@ public class Cidade {
     }
 
     // Getters
-    public int getNCidadaosComCovid() {
-        return nCidadaosComCovid;
+    public int getnCidadaosComCovidNorte() {
+        return nCidadaosComCovidNorte;
+    }
+    public int getnCidadaosComCovidLeste() {
+        return nCidadaosComCovidLeste;
+    }
+    public int getnCidadaosComCovidOeste() {
+        return nCidadaosComCovidOeste;
+    }
+    public int getnCidadaosComCovidSul() {
+        return nCidadaosComCovidSul;
+    }
+    public int getnCidadaosComCovidCentro() {
+        return nCidadaosComCovidCentro;
     }
 
     public Cidadao getCidadao(int index) {

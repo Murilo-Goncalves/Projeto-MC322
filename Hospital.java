@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Hospital {
+public abstract class Hospital {
     private String nome;
     private int capacidadeLeitos;
     private Regiao regiao;
