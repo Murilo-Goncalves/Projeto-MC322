@@ -1,4 +1,4 @@
-public class HospitalPublico extends Hospital {
+public class HospitalPublico extends Hospital implements FuncoesHospital{
 	private Convenio convenioAtendido;
     
     // Construtor
@@ -6,7 +6,21 @@ public class HospitalPublico extends Hospital {
     	super(nome, capacidadeLeitos, regiao);
         this.convenioAtendido = convenio;
     }
-    
+
+    public void Vacinar() {
+        for(int i=0; i < getPacientes().size(); i++) {
+            if (getPacientes().get(i).isGrupoDeRisco())
+                getPacientes().remove(i);
+        }
+        for(int i= 0; i< getPacientes().size(); i++){
+            if(getPacientes().get(i).getRegiao() == this.getRegiao())
+                getPacientes().remove(i);
+        }
+        for(int i=0; i<getPacientes().size(); i++){
+            getPacientes().remove(i);
+        }
+    }
+
     // Método toString
     @Override
     public String toString() {

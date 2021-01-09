@@ -1,4 +1,4 @@
-public class HospitalPrivado extends Hospital {
+public class HospitalPrivado extends Hospital implements FuncoesHospital {
 	private Convenio convenioAtendido;
     
     // Construtor
@@ -6,6 +6,8 @@ public class HospitalPrivado extends Hospital {
     	super(nome, capacidadeLeitos, regiao);
         this.convenioAtendido = convenio;
     }
+
+    public void Vacinar(){System.out.printf("Espere na fila do Hospital Público \n");}
 
     // Método toString
     @Override
