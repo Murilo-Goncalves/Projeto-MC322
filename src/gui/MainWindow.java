@@ -15,9 +15,9 @@ public class MainWindow extends JFrame {
         JButton bCidade = new JButton("Cidade");
         JButton bCidadao = new JButton("Cidadão");
         JButton bHospital = new JButton("Hospital");
-        AddForm formCidade = new AddForm("Adicionar Cidade");
-        AddForm formCidadao = new AddForm("Adicionar Cidadao");
-        AddForm formHospital = new AddForm("Adicionar Hospital");
+        AdicionarCidade formCidade = new AdicionarCidade("Adicionar Cidade");
+        AdicionarCidadao formCidadao = new AdicionarCidadao("Adicionar Cidadão");
+        AdicionarHospital formHospital = new AdicionarHospital("Adicionar Hospital");
 
         bCidade.addActionListener(new ActionListener() {
                                       public void actionPerformed(ActionEvent arg0) {

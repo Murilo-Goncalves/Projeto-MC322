@@ -6,14 +6,14 @@ public enum Sintomas {
 	CANSACO("comum", "leve"),
 	FEBRE("comum", "leve"),
 	TOSSE_SECA("comum", "leve"),
-	DOR_DE_CABECA_OU_NO_CORPO("comum", "leve"),
+	DOR_DE_CABECA("comum", "leve"),
+	DOR_NO_CORPO("comum", "leve"),
 	DOR_DE_GARGANTA("comum", "leve"),
 	CONGESTAO_NASAL_OU_CORIZA ("comum", "leve"),
 	PERDA_PALADAR_OU_OLFATO("comum", "leve"),
 	DIARREIA("incomum", "leve"),
 	CONJUNTIVITE("incomum","leve"),
 	ERUPCOES_CUTANEAS("incomum","leve"),
-	PERDA_DA_FALA("incomum","grave"),
 	FALTA_DE_AR("incomum", "grave"),
 	DOR_NO_PEITO("incomum", "grave");
 	

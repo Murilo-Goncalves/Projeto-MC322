@@ -9,7 +9,7 @@ public class Main {
 		// Criando Cidadaos de Campinas
 		ArrayList<Sintomas> sintomasAirton = new ArrayList<Sintomas>();
 		sintomasAirton.add(Sintomas.CANSACO);
-		sintomasAirton.add(Sintomas.DOR_DE_CABECA_OU_NO_CORPO);
+//		sintomasAirton.add(Sintomas.DOR_DE_CABECA_OU_NO_CORPO);
 		sintomasAirton.add(Sintomas.FALTA_DE_AR);
 		
 		ArrayList<Sintomas> sintomasIan = new ArrayList<Sintomas>();

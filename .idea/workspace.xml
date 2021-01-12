@@ -2,23 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a861599-9d38-4e16-87b9-97f54d8bc7c4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Cidadao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cidade.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Convenio.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FuncoesHospital.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hospital.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/HospitalPrivado.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/HospitalPublico.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paciente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuadroDeSaude.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Regiao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sintomas.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/relatorio/images/uml.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/relatorio/relatorio-projeto1.aux" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/relatorio/relatorio-projeto1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/relatorio/relatorio-projeto1.synctex.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/relatorio/relatorio-projeto1.tex" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/AdicionarCidadao.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui/AdicionarCidadao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sintomas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sintomas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/MainWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +33,10 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="false" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="327" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.17" />
