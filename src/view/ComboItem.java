@@ -1,8 +1,8 @@
 package view;
 
 class ComboItem {
-    private String key;
-    private Object value;
+    private final String key;
+    private final Object value;
 
     public ComboItem(String key, Object value) {
         this.key = key;

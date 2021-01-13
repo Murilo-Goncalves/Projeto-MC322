@@ -1,61 +1,74 @@
 package view;
 
-import model.Convenio;
-import model.Regiao;
-import model.Sexo;
-import model.Sintomas;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainWindow extends JFrame {
-    private JLabel lbl = new JLabel("O que deseja adicionar ao sistema Covidados?");
-    private JButton bCidade = new JButton("Cidade");
-    private JButton bCidadao = new JButton("Cidadão");
-    private JButton bHospital = new JButton("Hospital");
-    private AdicionarCidade formCidade = new AdicionarCidade("Adicionar Cidade");
-    private AdicionarCidadao formCidadao = new AdicionarCidadao("Adicionar Cidadão");
-    private AdicionarHospital formHospital = new AdicionarHospital("Adicionar Hospital");
+    private final ArrayList<Cidade> cidades = new ArrayList<Cidade>();
+    private final AdicionarCidade formCidade = new AdicionarCidade("Adicionar Cidade", cidades);
+    private final AdicionarCidadao formCidadao = new AdicionarCidadao("Adicionar Cidadão");
+    private final AdicionarHospital formHospital = new AdicionarHospital("Adicionar Hospital");
+    private JButton bHospital;
+    private JButton bCidadao;
+    private JComboBox<ComboItem> comboBoxCidade;
+    private JButton bCidade;
+    private JPanel rootPanel;
 
     public MainWindow() {
+        super("Sistema Covidados");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new FlowLayout());
-        setTitle("Sistema Covidados");
+        setContentPane(rootPanel);
 
         bCidade.addActionListener(new ActionListener() {
                                       public void actionPerformed(ActionEvent arg0) {
                                           if (!formCidade.isVisible()) {
                                               formCidade.setVisible(true);
                                           }
+
+                                          // Pega cidade adicionada no form Adicionar Cidade caso não seja vazia
+                                          Cidade tmp = cidades.get(cidades.size()-1);
+                                          if (!tmp.getNome().equals("")) comboBoxCidade.addItem(new ComboItem(tmp.getNome(), tmp));
                                       }
                                   });
 
         bCidadao.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                if (!formCidadao.isVisible()) {
-                    formCidadao.setVisible(true);
+                if (comboBoxCidade.getSelectedItem() == null) {
+                    JOptionPane.showMessageDialog(null, "Você precisa selecionar uma cidade.");
                 }
+                else if (!formCidadao.isVisible()) {
+                    formCidadao.setVisible(true);
+
+                    // Seta a cidade do cidadão para a cidade escolhida no combo box
+                    ComboItem item = (ComboItem) comboBoxCidade.getSelectedItem();
+                    formCidadao.setCidade((Cidade) item.getValue());
+                }
+
             }
         });
 
         bHospital.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                if (!formHospital.isVisible()) {
+                if (comboBoxCidade.getSelectedItem() == null) {
+                    JOptionPane.showMessageDialog(null, "Você precisa selecionar uma cidade.");
+                }
+                else if (!formHospital.isVisible()) {
                     formHospital.setVisible(true);
+
+                    // Seta a cidade do hospital para a cidade escolhida no combo box
+                    ComboItem item = (ComboItem) comboBoxCidade.getSelectedItem();
+                    formCidadao.setCidade((Cidade) item.getValue());
                 }
             }
         });
 
-        JPanel panel = new JPanel();
-        panel.add(lbl);
-        panel.add(bCidade);
-        panel.add(bCidadao);
-        panel.add(bHospital);
-
-        add(panel);
+        pack();
         setLocationRelativeTo(null);
     }
 
@@ -99,13 +112,12 @@ public class MainWindow extends JFrame {
         return formCidadao.getConvenio();
     }
 
-    public ArrayList<Sintomas> getCidadaoSintomas() {
-        return formCidadao.getSintomas();
-    }
+    public ArrayList<Sintomas> getCidadaoSintomas() { return formCidadao.getSintomas(); }
 
     public boolean getCidadaoProcuraHospital() {
         return formCidadao.getProcuraHospital();
     }
+
     public String getHospitalNome() {
         return formHospital.getNome();
     }
@@ -121,4 +133,6 @@ public class MainWindow extends JFrame {
     public boolean getHospitalIsPrivado() {
         return formHospital.getIsPrivado();
     }
+
+    public ArrayList<Cidade> getCidades() { return cidades; }
 }

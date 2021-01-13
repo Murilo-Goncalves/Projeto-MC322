@@ -139,4 +139,9 @@ public class Cidade {
     public int getNCidades() {
         return nCidades;
     }
+
+    public String getNome()
+    {
+        return nome;
+    }
 }

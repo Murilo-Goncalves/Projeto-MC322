@@ -4,26 +4,17 @@
     <list default="true" id="7a861599-9d38-4e16-87b9-97f54d8bc7c4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cidadao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cidade.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Convenio.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FuncoesHospital.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hospital.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HospitalPrivado.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HospitalPublico.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Paciente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QuadroDeSaude.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Regiao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sintomas.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/AddForm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/AdicionarCidadao.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/AdicionarCidadao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/AdicionarCidade.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/AdicionarCidade.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/AdicionarHospital.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/AdicionarHospital.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/MainWindow.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Cidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Cidade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/AdicionarCidadao.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/AdicionarCidadao.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/AdicionarCidadao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/AdicionarCidadao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/AdicionarCidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/AdicionarCidade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/AdicionarHospital.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/AdicionarHospital.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/AdicionarPaciente.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/AdicionarPaciente.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/AdicionarPaciente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/AdicionarPaciente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ComboItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ComboItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/NaoEncontrouHospital.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/NaoEncontrouHospital.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +43,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="327" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="192" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/controller" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.17" />
@@ -95,21 +86,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/view/MainWindow.java</url>
-          <line>82</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/view/MainWindow.java</url>
-          <line>86</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

@@ -13,9 +13,9 @@ public class AdicionarHospital extends JDialog {
     private JButton buttonCancel;
     private JTextField textFieldNome;
     private JTextField textFieldNLeitos;
-    private JComboBox comboBoxRegiao;
-    private JComboBox comboBoxConvenio;
-    private JComboBox comboBoxCidade;
+    private JComboBox<ComboItem> comboBoxRegiao;
+    private JComboBox<ComboItem> comboBoxConvenio;
+    private JComboBox<ComboItem> comboBoxCidade;
     private JCheckBox oHospitalEPrivadoCheckBox;
 
     private String nome;

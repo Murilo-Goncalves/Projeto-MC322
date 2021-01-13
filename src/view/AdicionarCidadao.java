@@ -1,9 +1,6 @@
 package view;
 
-import model.Convenio;
-import model.Regiao;
-import model.Sexo;
-import model.Sintomas;
+import model.*;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -21,23 +18,24 @@ public class AdicionarCidadao extends JDialog {
     private JTextField textFieldTelefone;
     private JTextField textFieldEmail;
 
-    private JComboBox comboBoxSexo;
-    private JComboBox comboBoxRegiao;
-    private JComboBox comboBoxConvenio;
+    private JComboBox<ComboItem> comboBoxSexo;
+    private JComboBox<ComboItem> comboBoxRegiao;
+    private JComboBox<ComboItem> comboBoxConvenio;
 
-    private JCheckBox cansaçoCheckBox;
+    private JCheckBox cansacoCheckBox;
     private JCheckBox febreCheckBox;
     private JCheckBox tosseSecaCheckBox;
-    private JCheckBox dorDeCabeçaCheckBox;
+    private JCheckBox dorDeCabecaCheckBox;
     private JCheckBox dorNoCorpoCheckBox;
     private JCheckBox dorDeGargantaCheckBox;
-    private JCheckBox congestãoNasalCheckBox;
+    private JCheckBox congestaoNasalCheckBox;
     private JCheckBox perdaDePaladarCheckBox;
     private JCheckBox diarreiaCheckBox;
     private JCheckBox conjuntiviteCheckBox;
-    private JCheckBox erupçõesCutâneasCheckBox;
+    private JCheckBox erupcoesCutaneasCheckBox;
     private JCheckBox faltaDeArCheckBox;
     private JCheckBox dorNoPeitoCheckBox;
+
     private JCheckBox desejaProcurarUmHospitalCheckBox;
 
     private String nome;
@@ -53,7 +51,9 @@ public class AdicionarCidadao extends JDialog {
     private ArrayList<Sintomas> sintomas;
     private boolean procuraHospital;
 
-    private AdicionarPaciente formPaciente = new AdicionarPaciente("Ficha médica");
+    private Cidade cidade;
+
+    private final AdicionarPaciente formPaciente = new AdicionarPaciente("Ficha médica");
 
     public AdicionarCidadao(String title) {
         setContentPane(contentPane);
@@ -61,10 +61,10 @@ public class AdicionarCidadao extends JDialog {
         getRootPane().setDefaultButton(buttonOK);
         setTitle(title);
 
+        comboBoxSexo.addItem(new ComboItem("Prefiro não declarar", Sexo.PREFIRO_NAO_DECLARAR));
         comboBoxSexo.addItem(new ComboItem("Não binário", Sexo.NAO_BINARIO));
         comboBoxSexo.addItem(new ComboItem("Feminino", Sexo.FEMININO));
         comboBoxSexo.addItem(new ComboItem("Masculino", Sexo.MASCULINO));
-        comboBoxSexo.addItem(new ComboItem("Prefiro não declarar", Sexo.PREFIRO_NAO_DECLARAR));
 
         comboBoxRegiao.addItem(new ComboItem("Norte", Regiao.NORTE));
         comboBoxRegiao.addItem(new ComboItem("Sul", Regiao.SUL));
@@ -112,21 +112,38 @@ public class AdicionarCidadao extends JDialog {
         cpf = textFieldCpf.getText();
         login = textFieldLogin.getText();
         senha = textFieldSenha.getText();
-        // *** except ***
+        // *** except "numberFormatException"? ***
         idade = Integer.parseInt(textFieldIdade.getText());
         telefone = textFieldTelefone.getText();
         email = textFieldEmail.getText();
+
         ComboItem item;
         item = (ComboItem) comboBoxSexo.getSelectedItem();
         sexo = (Sexo) item.getValue();
         item = (ComboItem) comboBoxRegiao.getSelectedItem();
-        regiao = (Regiao) item.getValue()
+        regiao = (Regiao) item.getValue();
         item = (ComboItem) comboBoxConvenio.getSelectedItem();
         convenio = (Convenio) item.getValue();
+
+        if (cansacoCheckBox.isSelected()) { sintomas.add(Sintomas.CANSACO); }
+        if (febreCheckBox.isSelected()) { sintomas.add(Sintomas.FEBRE); }
+        if (faltaDeArCheckBox.isSelected()) { sintomas.add(Sintomas.FALTA_DE_AR); }
+        if (conjuntiviteCheckBox.isSelected()) { sintomas.add(Sintomas.CONJUNTIVITE); }
+        if (congestaoNasalCheckBox.isSelected()) { sintomas.add(Sintomas.CONGESTAO_NASAL_OU_CORIZA); }
+        if (diarreiaCheckBox.isSelected()) { sintomas.add(Sintomas.DIARREIA); }
+        if (dorDeCabecaCheckBox.isSelected()) { sintomas.add(Sintomas.DOR_DE_CABECA); }
+        if (dorNoCorpoCheckBox.isSelected()) { sintomas.add(Sintomas.DOR_NO_CORPO); }
+        if (dorNoPeitoCheckBox.isSelected()) { sintomas.add(Sintomas.DOR_NO_PEITO); }
+        if (dorDeGargantaCheckBox.isSelected()) { sintomas.add(Sintomas.DOR_DE_GARGANTA); }
+        if (perdaDePaladarCheckBox.isSelected()) { sintomas.add(Sintomas.PERDA_PALADAR_OU_OLFATO); }
+        if (tosseSecaCheckBox.isSelected()) { sintomas.add(Sintomas.TOSSE_SECA); }
+        if (erupcoesCutaneasCheckBox.isSelected()) { sintomas.add(Sintomas.ERUPCOES_CUTANEAS); }
+
         procuraHospital = desejaProcurarUmHospitalCheckBox.isSelected();
         if (procuraHospital) {
             formPaciente.setVisible(true);
         }
+
         dispose();
     }
 
@@ -180,5 +197,12 @@ public class AdicionarCidadao extends JDialog {
 
     public boolean getProcuraHospital() {
         return procuraHospital;
+    }
+
+    public Cidade getCidade() {
+        return cidade;
+    }
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
     }
 }

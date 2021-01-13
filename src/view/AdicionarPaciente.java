@@ -7,7 +7,7 @@ public class AdicionarPaciente extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JCheckBox possuiDoençasCrônicasCheckBox;
+    private JCheckBox possuiDoencasCronicasCheckBox;
     private JCheckBox eFumanteCheckBox;
     private JCheckBox testouPositivoParaCOVIDCheckBox;
     private JTextField textFieldMassa;
@@ -21,12 +21,6 @@ public class AdicionarPaciente extends JDialog {
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onAdicionar();
-            }
-        });
-
-        buttonCancel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
             }
         });
 

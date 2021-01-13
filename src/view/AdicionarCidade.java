@@ -1,7 +1,10 @@
 package view;
 
+import model.Cidade;
+
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class AdicionarCidade extends JDialog {
     private JPanel contentPane;
@@ -10,7 +13,7 @@ public class AdicionarCidade extends JDialog {
     private JTextField textFieldNome;
     private String nome;
 
-    public AdicionarCidade(String title) {
+    public AdicionarCidade(String title, ArrayList<Cidade> cidades) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -18,7 +21,7 @@ public class AdicionarCidade extends JDialog {
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onAdicionar();
+                onAdicionar(cidades);
             }
         });
 
@@ -45,8 +48,10 @@ public class AdicionarCidade extends JDialog {
         setLocationRelativeTo(null);
     }
 
-    private void onAdicionar() {
+    private void onAdicionar(ArrayList<Cidade> cidades) {
         nome = textFieldNome.getText();
+        textFieldNome.setText("");
+        cidades.add(new Cidade(nome));
         dispose();
     }
 
