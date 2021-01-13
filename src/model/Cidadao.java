@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 
 public class Cidadao {
@@ -8,14 +10,14 @@ public class Cidadao {
     private int idade;
     private String telefone;
     private String email;
-    private String sexo;
+    private Sexo sexo;
     private ArrayList<Sintomas> sintomas;
     private Regiao regiao;
     private Convenio convenio;
 
     // Construtor
     public Cidadao(String nome, String cpf, String login, String senha, int idade, String telefone, String email,
-                   String sexo, ArrayList<Sintomas> sintomas, Regiao regiao, Convenio convenio) {
+                   Sexo sexo, ArrayList<Sintomas> sintomas, Regiao regiao, Convenio convenio) {
         this.nome = nome;
         this.cpf = cpf;
         this.login = login;
@@ -106,11 +108,11 @@ public class Cidadao {
         this.email = email;
     }
 
-    public String getSexo() {
+    public Sexo getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
 

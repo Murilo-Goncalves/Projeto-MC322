@@ -1,37 +1,18 @@
-package gui;
+package view;
 
 import javax.swing.*;
 import java.awt.event.*;
 
-public class AdicionarCidadao extends JDialog {
+public class AdicionarPaciente extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JTextField textField5;
-    private JTextField textField6;
-    private JTextField textField7;
-    private JCheckBox cansaçoCheckBox;
-    private JComboBox comboBox1;
-    private JComboBox comboBox2;
-    private JComboBox comboBox3;
-    private JCheckBox febreCheckBox;
-    private JCheckBox tosseSecaCheckBox;
-    private JCheckBox dorDeCabeçaCheckBox;
-    private JCheckBox dorNoCorpoCheckBox;
-    private JCheckBox dorDeGargantaCheckBox;
-    private JCheckBox congestãoNasalCheckBox;
-    private JCheckBox perdaDePaladarCheckBox;
-    private JCheckBox diarreiaCheckBox;
-    private JCheckBox conjuntiviteCheckBox;
-    private JCheckBox erupçõesCutâneasCheckBox;
-    private JCheckBox faltaDeArCheckBox;
-    private JCheckBox dorNoPeitoCheckBox;
+    private JCheckBox possuiDoençasCrônicasCheckBox;
+    private JCheckBox eFumanteCheckBox;
+    private JCheckBox testouPositivoParaCOVIDCheckBox;
+    private JTextField textFieldMassa;
 
-    public AdicionarCidadao(String title) {
+    public AdicionarPaciente(String title) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -39,7 +20,7 @@ public class AdicionarCidadao extends JDialog {
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onOK();
+                onAdicionar();
             }
         });
 
@@ -49,7 +30,6 @@ public class AdicionarCidadao extends JDialog {
             }
         });
 
-        // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -57,7 +37,6 @@ public class AdicionarCidadao extends JDialog {
             }
         });
 
-        // call onCancel() on ESCAPE
         contentPane.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
@@ -68,13 +47,11 @@ public class AdicionarCidadao extends JDialog {
         setLocationRelativeTo(null);
     }
 
-    private void onOK() {
-        // add your code here
+    private void onAdicionar() {
         dispose();
     }
 
     private void onCancel() {
-        // add your code here if necessary
         dispose();
     }
 }

@@ -1,17 +1,16 @@
-package gui;
+package view;
 
 import javax.swing.*;
 import java.awt.event.*;
 
-public class AdicionarHospital extends JDialog {
+public class AdicionarCidade extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JComboBox comboBox1;
+    private JTextField textFieldNome;
+    private String nome;
 
-    public AdicionarHospital(String title) {
+    public AdicionarCidade(String title) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -19,7 +18,7 @@ public class AdicionarHospital extends JDialog {
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onOK();
+                onAdicionar();
             }
         });
 
@@ -29,7 +28,6 @@ public class AdicionarHospital extends JDialog {
             }
         });
 
-        // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -37,7 +35,6 @@ public class AdicionarHospital extends JDialog {
             }
         });
 
-        // call onCancel() on ESCAPE
         contentPane.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
@@ -48,13 +45,16 @@ public class AdicionarHospital extends JDialog {
         setLocationRelativeTo(null);
     }
 
-    private void onOK() {
-        // add your code here
+    private void onAdicionar() {
+        nome = textFieldNome.getText();
         dispose();
     }
 
     private void onCancel() {
-        // add your code here if necessary
         dispose();
+    }
+
+    public String getNome() {
+        return nome;
     }
 }

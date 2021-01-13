@@ -1,3 +1,5 @@
+package model;
+
 public class HospitalPublico extends Hospital implements FuncoesHospital{
 	private Convenio convenioAtendido;
     

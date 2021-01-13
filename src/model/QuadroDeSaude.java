@@ -1,3 +1,4 @@
+package model;
 
 public enum QuadroDeSaude {
 	SAUDAVEL,
