@@ -69,6 +69,7 @@ public class AdicionarPaciente extends JDialog {
         isFumante = eFumanteCheckBox.isSelected();
         hasCovid = testouPositivoParaCOVIDCheckBox.isSelected();
 
+        setDefaultValues();
         dispose();
     }
 
