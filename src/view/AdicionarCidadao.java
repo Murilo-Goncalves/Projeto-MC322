@@ -48,12 +48,13 @@ public class AdicionarCidadao extends JDialog {
     private Sexo sexo;
     private Regiao regiao;
     private Convenio convenio;
-    private ArrayList<Sintomas> sintomas;
+    private ArrayList<Sintomas> sintomas = new ArrayList<Sintomas>();
     private boolean procuraHospital;
 
     private Cidade cidade;
+    private Cidadao cidadao;
 
-    private final AdicionarPaciente formPaciente = new AdicionarPaciente("Ficha médica");
+    private final AdicionarPaciente formPaciente = new AdicionarPaciente("Ficha Médica");
 
     public AdicionarCidadao(String title) {
         setContentPane(contentPane);
@@ -103,6 +104,12 @@ public class AdicionarCidadao extends JDialog {
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
+        contentPane.registerKeyboardAction(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onAdicionar();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+
         pack();
         setLocationRelativeTo(null);
     }
@@ -125,30 +132,78 @@ public class AdicionarCidadao extends JDialog {
         item = (ComboItem) comboBoxConvenio.getSelectedItem();
         convenio = (Convenio) item.getValue();
 
-        if (cansacoCheckBox.isSelected()) { sintomas.add(Sintomas.CANSACO); }
-        if (febreCheckBox.isSelected()) { sintomas.add(Sintomas.FEBRE); }
-        if (faltaDeArCheckBox.isSelected()) { sintomas.add(Sintomas.FALTA_DE_AR); }
-        if (conjuntiviteCheckBox.isSelected()) { sintomas.add(Sintomas.CONJUNTIVITE); }
-        if (congestaoNasalCheckBox.isSelected()) { sintomas.add(Sintomas.CONGESTAO_NASAL_OU_CORIZA); }
-        if (diarreiaCheckBox.isSelected()) { sintomas.add(Sintomas.DIARREIA); }
-        if (dorDeCabecaCheckBox.isSelected()) { sintomas.add(Sintomas.DOR_DE_CABECA); }
-        if (dorNoCorpoCheckBox.isSelected()) { sintomas.add(Sintomas.DOR_NO_CORPO); }
-        if (dorNoPeitoCheckBox.isSelected()) { sintomas.add(Sintomas.DOR_NO_PEITO); }
-        if (dorDeGargantaCheckBox.isSelected()) { sintomas.add(Sintomas.DOR_DE_GARGANTA); }
-        if (perdaDePaladarCheckBox.isSelected()) { sintomas.add(Sintomas.PERDA_PALADAR_OU_OLFATO); }
-        if (tosseSecaCheckBox.isSelected()) { sintomas.add(Sintomas.TOSSE_SECA); }
-        if (erupcoesCutaneasCheckBox.isSelected()) { sintomas.add(Sintomas.ERUPCOES_CUTANEAS); }
+        if (cansacoCheckBox.isSelected()) { getSintomas().add(Sintomas.CANSACO); }
+        if (febreCheckBox.isSelected()) { getSintomas().add(Sintomas.FEBRE); }
+        if (faltaDeArCheckBox.isSelected()) { getSintomas().add(Sintomas.FALTA_DE_AR); }
+        if (conjuntiviteCheckBox.isSelected()) { getSintomas().add(Sintomas.CONJUNTIVITE); }
+        if (congestaoNasalCheckBox.isSelected()) { getSintomas().add(Sintomas.CONGESTAO_NASAL_OU_CORIZA); }
+        if (diarreiaCheckBox.isSelected()) { getSintomas().add(Sintomas.DIARREIA); }
+        if (dorDeCabecaCheckBox.isSelected()) { getSintomas().add(Sintomas.DOR_DE_CABECA); }
+        if (dorNoCorpoCheckBox.isSelected()) { getSintomas().add(Sintomas.DOR_NO_CORPO); }
+        if (dorNoPeitoCheckBox.isSelected()) { getSintomas().add(Sintomas.DOR_NO_PEITO); }
+        if (dorDeGargantaCheckBox.isSelected()) { getSintomas().add(Sintomas.DOR_DE_GARGANTA); }
+        if (perdaDePaladarCheckBox.isSelected()) { getSintomas().add(Sintomas.PERDA_PALADAR_OU_OLFATO); }
+        if (tosseSecaCheckBox.isSelected()) { getSintomas().add(Sintomas.TOSSE_SECA); }
+        if (erupcoesCutaneasCheckBox.isSelected()) { getSintomas().add(Sintomas.ERUPCOES_CUTANEAS); }
+
+        cidadao = new Cidadao(nome, cpf, login, senha, idade, telefone, email, sexo, sintomas, regiao, convenio);
 
         procuraHospital = desejaProcurarUmHospitalCheckBox.isSelected();
         if (procuraHospital) {
-            formPaciente.setVisible(true);
+            if (!cidade.isSuspeita(cidadao)) {
+                JOptionPane.showMessageDialog(null, "O cidadão não possui sintomas e não precisa procurar por hospitais.");
+            } else {
+                Hospital hospital = cidade.procurarHospital(cidadao);
+                if (hospital == null) {
+                    JOptionPane.showMessageDialog(null, "Não existem hospitais disponíveis na sua região.");
+                } else {
+                    formPaciente.setHospital(hospital);
+                    formPaciente.setHospitalEncontrado(hospital.getNome());
+                    formPaciente.setVisible(true);
+                    boolean isInternado = hospital.ficharPaciente(cidadao, formPaciente.getMassaCorporal(), formPaciente.getHasDoencasCronicas(), formPaciente.getIsFumante(), formPaciente.getHasCovid());
+                    if (isInternado) {
+                        JOptionPane.showMessageDialog(null, "O paciente deverá ser internado. Dirija-se para o hospital o quanto antes.");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "O paciente não precisa ser internado, deve ficar em casa e descansar.");
+                    }
+                }
+            }
         }
 
+        setDefaultValues();
         dispose();
     }
 
     private void onCancel() {
         dispose();
+    }
+
+    private void setDefaultValues() {
+        // Reseta os valores de todos os campos do forms
+        textFieldNome.setText("");
+        textFieldCpf.setText("");
+        textFieldLogin.setText("");
+        textFieldSenha.setText("");
+        textFieldIdade.setText("");
+        textFieldTelefone.setText("");
+        textFieldEmail.setText("");
+
+        cansacoCheckBox.setSelected(false);
+        febreCheckBox.setSelected(false);
+        faltaDeArCheckBox.setSelected(false);
+        conjuntiviteCheckBox.setSelected(false);
+        congestaoNasalCheckBox.setSelected(false);
+        dorDeCabecaCheckBox.setSelected(false);
+        dorNoPeitoCheckBox.setSelected(false);
+        dorNoCorpoCheckBox.setSelected(false);
+        febreCheckBox.setSelected(false);
+        perdaDePaladarCheckBox.setSelected(false);
+        dorDeGargantaCheckBox.setSelected(false);
+        tosseSecaCheckBox.setSelected(false);
+        erupcoesCutaneasCheckBox.setSelected(false);
+        diarreiaCheckBox.setSelected(false);
+
+        desejaProcurarUmHospitalCheckBox.setSelected(false);
     }
 
     public String getNome() {
@@ -202,7 +257,12 @@ public class AdicionarCidadao extends JDialog {
     public Cidade getCidade() {
         return cidade;
     }
+
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
+    }
+
+    public Cidadao getCidadao() {
+        return cidadao;
     }
 }

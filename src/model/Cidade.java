@@ -3,10 +3,10 @@ package model;
 import java.util.ArrayList;
 
 public class Cidade {
-    private String nome;
-    private ArrayList<Cidadao> cidadaos;
-    private ArrayList<HospitalPublico> hospitaisPublicos;
-    private ArrayList<HospitalPrivado> hospitaisPrivados;
+    private final String nome;
+    private final ArrayList<Cidadao> cidadaos;
+    private final ArrayList<HospitalPublico> hospitaisPublicos;
+    private final ArrayList<HospitalPrivado> hospitaisPrivados;
     private int numeroCidadaos = 0;
     private int nCidadaosComCovidNorte = 0;
     private int nCidadaosComCovidSul = 0;
@@ -49,13 +49,11 @@ public class Cidade {
 
     // Busca por um hospital na região do cidadão
     public Hospital procurarHospital(Cidadao cidadao) {
-        System.out.printf("%s %s %s\n", "Cidadão", cidadao.getNome(), " está com suspeita de COVID");
         // Se o cidadão possui convênio, procuramos o hospital privado da mesma região que possua esse convênio
         if (cidadao.hasConvenio()) {
             for (HospitalPrivado hospital : hospitaisPrivados) {
                 if (hospital.getRegiao().equals(cidadao.getRegiao()) && !hospital.isLotado()
                     && hospital.getConvenioAtendido().equals(cidadao.getConvenio())) {
-                    this.aumentaNCidadaosComCovid(hospital.ficharPaciente(cidadao), cidadao.getRegiao());
                     return hospital;
                 }
             }
@@ -64,12 +62,10 @@ public class Cidade {
         // Se um hospital público não foi encontrado ou o cidadão não possui convênio, buscamos um hospital público
         for (HospitalPublico hospital : hospitaisPublicos) {
             if (hospital.getRegiao().equals(cidadao.getRegiao()) && !hospital.isLotado()) {
-                this.aumentaNCidadaosComCovid(hospital.ficharPaciente(cidadao), cidadao.getRegiao());
                 return hospital;
             }
         }
 
-        System.out.println("Não existem hospitais com leitos disponíveis na região.");
         return null;
     }
 
@@ -81,12 +77,12 @@ public class Cidade {
         hospitaisPrivados.add(hospital);
     }
 
-    //remover hospitais:
+    // Remover hospitais:
     public void removeHospital(HospitalPublico hospital){hospitaisPublicos.remove(hospital);}
 
     public void removeHospital(HospitalPrivado hospital){hospitaisPrivados.remove(hospital);}
 
-     // Método toString
+    // Método toString
     @Override
     public String toString() {
         String out = "";
@@ -140,6 +136,7 @@ public class Cidade {
         return nCidades;
     }
 
+    public ArrayList<Cidadao> getCidadaos() { return cidadaos; }
     public String getNome()
     {
         return nome;

@@ -40,14 +40,20 @@ public class MainWindow extends JFrame {
         bCidadao.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 if (comboBoxCidade.getSelectedItem() == null) {
-                    JOptionPane.showMessageDialog(null, "Você precisa selecionar uma cidade.");
+                    JOptionPane.showMessageDialog(null, "Você precisa selecionar uma cidade para adicionar um cidadão.");
                 }
                 else if (!formCidadao.isVisible()) {
+                    // Seta a cidade do cidadão
+                    ComboItem item = (ComboItem) comboBoxCidade.getSelectedItem();
+                    Cidade cidade = (Cidade) item.getValue();
+                    formCidadao.setCidade(cidade);
+
+                    // Abre o forms de adicionar cidadão
                     formCidadao.setVisible(true);
 
-                    // Seta a cidade do cidadão para a cidade escolhida no combo box
-                    ComboItem item = (ComboItem) comboBoxCidade.getSelectedItem();
-                    formCidadao.setCidade((Cidade) item.getValue());
+                    // Adiciona o cidadão na cidade escolhida no combo box
+                    Cidadao cidadao = formCidadao.getCidadao();
+                    if (!cidade.getCidadaos().contains(cidadao)) { cidade.adicionaCidadao(cidadao); }
                 }
 
             }
@@ -56,14 +62,22 @@ public class MainWindow extends JFrame {
         bHospital.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 if (comboBoxCidade.getSelectedItem() == null) {
-                    JOptionPane.showMessageDialog(null, "Você precisa selecionar uma cidade.");
+                    JOptionPane.showMessageDialog(null, "Você precisa selecionar uma cidade para adicionar um hospital.");
                 }
                 else if (!formHospital.isVisible()) {
+                    // Seta a cidade do hospital
+
                     formHospital.setVisible(true);
 
                     // Seta a cidade do hospital para a cidade escolhida no combo box
                     ComboItem item = (ComboItem) comboBoxCidade.getSelectedItem();
-                    formCidadao.setCidade((Cidade) item.getValue());
+                    Cidade cidade = (Cidade) item.getValue();
+                    Hospital hospital = formHospital.getHospital();
+                    if (hospital instanceof  HospitalPrivado) {
+                        cidade.adicionaHospital((HospitalPrivado) hospital);
+                    } else {
+                        cidade.adicionaHospital((HospitalPublico) hospital);
+                    }
                 }
             }
         });

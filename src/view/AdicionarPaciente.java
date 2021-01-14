@@ -1,5 +1,7 @@
 package view;
 
+import model.Hospital;
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -11,6 +13,14 @@ public class AdicionarPaciente extends JDialog {
     private JCheckBox eFumanteCheckBox;
     private JCheckBox testouPositivoParaCOVIDCheckBox;
     private JTextField textFieldMassa;
+    private JLabel hospitalEncontrado;
+
+    private int massaCorporal;
+    private boolean hasDoencasCronicas;
+    private boolean isFumante;
+    private boolean hasCovid;
+
+    private Hospital hospital;
 
     public AdicionarPaciente(String title) {
         setContentPane(contentPane);
@@ -37,15 +47,62 @@ public class AdicionarPaciente extends JDialog {
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
+        contentPane.registerKeyboardAction(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onAdicionar();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+
         pack();
         setLocationRelativeTo(null);
     }
 
     private void onAdicionar() {
+        // *** except ***
+        massaCorporal = Integer.parseInt(textFieldMassa.getText());
+        hasDoencasCronicas = possuiDoencasCronicasCheckBox.isSelected();
+        isFumante = eFumanteCheckBox.isSelected();
+        hasCovid = testouPositivoParaCOVIDCheckBox.isSelected();
+
         dispose();
     }
 
     private void onCancel() {
         dispose();
+    }
+
+    private void setDefaultValues() {
+        textFieldMassa.setText("");
+        possuiDoencasCronicasCheckBox.setSelected(false);
+        eFumanteCheckBox.setSelected(false);
+        testouPositivoParaCOVIDCheckBox.setSelected(false);
+    }
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+    }
+
+    public void setHospitalEncontrado(String hospitalEncontrado) {
+        this.hospitalEncontrado.setText(hospitalEncontrado);
+    }
+
+    public int getMassaCorporal() {
+        return massaCorporal;
+    }
+
+    public boolean getHasDoencasCronicas() {
+        return hasDoencasCronicas;
+    }
+
+    public boolean getIsFumante() {
+        return isFumante;
+    }
+
+    public boolean getHasCovid() {
+        return hasCovid;
     }
 }

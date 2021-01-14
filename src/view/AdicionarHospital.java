@@ -1,7 +1,6 @@
 package view;
 
-import model.Convenio;
-import model.Regiao;
+import model.*;
 
 import javax.swing.*;
 import javax.swing.event.InternalFrameListener;
@@ -15,13 +14,14 @@ public class AdicionarHospital extends JDialog {
     private JTextField textFieldNLeitos;
     private JComboBox<ComboItem> comboBoxRegiao;
     private JComboBox<ComboItem> comboBoxConvenio;
-    private JComboBox<ComboItem> comboBoxCidade;
-    private JCheckBox oHospitalEPrivadoCheckBox;
 
     private String nome;
     private int capacidadeLeitos;
     private Regiao regiao;
+    private Convenio convenio;
     private boolean isPrivado;
+
+    private Hospital hospital;
 
     public AdicionarHospital(String title) {
         setContentPane(contentPane);
@@ -35,7 +35,7 @@ public class AdicionarHospital extends JDialog {
         comboBoxRegiao.addItem(new ComboItem("Oeste", Regiao.OESTE));
         comboBoxRegiao.addItem(new ComboItem("Centro", Regiao.CENTRO));
 
-        comboBoxConvenio.addItem(new ComboItem("Nenhum", Convenio.SEM_CONVENIO));
+        comboBoxConvenio.addItem(new ComboItem("Hospital público", Convenio.SEM_CONVENIO));
         comboBoxConvenio.addItem(new ComboItem("Amil", Convenio.AMIL));
         comboBoxConvenio.addItem(new ComboItem("Notredame", Convenio.NOTREDAME));
         comboBoxConvenio.addItem(new ComboItem("Bradesco", Convenio.BRADESCO));
@@ -66,6 +66,12 @@ public class AdicionarHospital extends JDialog {
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
+        contentPane.registerKeyboardAction(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onAdicionar();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+
         pack();
         setLocationRelativeTo(null);
     }
@@ -74,13 +80,30 @@ public class AdicionarHospital extends JDialog {
         nome = textFieldNome.getText();
         // *** except ***
         capacidadeLeitos = Integer.parseInt(textFieldNLeitos.getText());
-        // FAZER COMBOBOX
-        isPrivado = oHospitalEPrivadoCheckBox.isSelected();
+
+        ComboItem item;
+        item = (ComboItem) comboBoxConvenio.getSelectedItem();
+        convenio = (Convenio) item.getValue();
+        item = (ComboItem) comboBoxRegiao.getSelectedItem();
+        regiao = (Regiao) item.getValue();
+
+        isPrivado = convenio != Convenio.SEM_CONVENIO;
+
+        hospital = isPrivado ? new HospitalPrivado(nome, capacidadeLeitos, regiao, convenio)
+                             : new HospitalPublico(nome, capacidadeLeitos, regiao, convenio);
+
+        setDefaultValues();
         dispose();
     }
 
     private void onCancel() {
         dispose();
+    }
+
+    private void setDefaultValues() {
+        // Reseta os valores de todos os campos do forms
+        textFieldNome.setText("");
+        textFieldNLeitos.setText("");
     }
 
     public String getNome() {
@@ -97,5 +120,9 @@ public class AdicionarHospital extends JDialog {
 
     public boolean getIsPrivado() {
         return isPrivado;
+    }
+
+    public Hospital getHospital() {
+        return hospital;
     }
 }

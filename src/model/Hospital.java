@@ -1,13 +1,12 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public abstract class Hospital implements FuncoesHospital{
+public abstract class Hospital implements FuncoesHospital {
     private String nome;
     private int capacidadeLeitos;
     private Regiao regiao;
-    private ArrayList<Paciente> pacientes;
+    private final ArrayList<Paciente> pacientes;
 
     // Constants
     public final static int RISCO_MEDIO = 3;
@@ -21,36 +20,20 @@ public abstract class Hospital implements FuncoesHospital{
         this.pacientes = new ArrayList<Paciente>();
     }
 
-    // Questionário para o cidadão para decidir se será internado, 
-    // além de retornar se este possui COVID ou não
-    public boolean ficharPaciente(Cidadao cidadao)
+    // Decide se o paciente será internado
+    public boolean ficharPaciente(Cidadao cidadao, int massaCorporal, boolean hasDoencasCronicas, boolean isFumante, boolean hasCovid)
     {
         int numeroDeSintomas = cidadao.getSintomas().size();
         
         if (numeroDeSintomas >= RISCO_MEDIO || cidadao.getSintomas().stream().anyMatch(sintoma -> "grave".equals(sintoma.getGravidade()))) {
-        	Scanner var = new Scanner(System.in);
-            
-            System.out.println("Nos diga sua massa corporal (kg):");
-            double massaCorporal = var.nextDouble();
-            
-            System.out.println("Você possui doenças crônicas? (responda com 'sim' se possuir)");
-        	var.nextLine();
-            String hasDoencasCronicas = var.nextLine();
-            
-            System.out.println("É fumante? (responda com 'sim' se for)");
-        	String isFumante = var.nextLine();
-            
-            System.out.println("Rebeceu teste para covid e teve resultado positivo? (responda com 'sim' se foi)");
-            String temCovid = var.nextLine();
 
-        	Paciente paciente = new Paciente(cidadao, massaCorporal, hasDoencasCronicas.equals("sim") , isFumante.equals("sim"), temCovid.equals("sim"));
+        	Paciente paciente = new Paciente(cidadao, massaCorporal, hasDoencasCronicas, isFumante, hasCovid);
         	pacientes.add(paciente);
-        	
-        	return temCovid.equals("sim");
+
+        	return true;
         }
         
         else {
-        	System.out.println("Fique em casa!");
         	return false;
         }
     }
@@ -60,8 +43,7 @@ public abstract class Hospital implements FuncoesHospital{
     }
 
     public boolean isLotado() {
-        if (pacientes.size() == capacidadeLeitos) return true;
-        return false;
+        return pacientes.size() == capacidadeLeitos;
     }
 
     // Método toString
