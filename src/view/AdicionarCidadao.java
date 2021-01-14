@@ -119,8 +119,14 @@ public class AdicionarCidadao extends JDialog {
         cpf = textFieldCpf.getText();
         login = textFieldLogin.getText();
         senha = textFieldSenha.getText();
-        // *** except "numberFormatException"? ***
-        idade = Integer.parseInt(textFieldIdade.getText());
+
+        try {
+            idade = Integer.parseInt(textFieldIdade.getText());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "A idade do cidadão precisa conter apenas inteiros.");
+            return;
+        }
+
         telefone = textFieldTelefone.getText();
         email = textFieldEmail.getText();
 

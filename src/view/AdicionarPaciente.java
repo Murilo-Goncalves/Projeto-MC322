@@ -58,8 +58,13 @@ public class AdicionarPaciente extends JDialog {
     }
 
     private void onAdicionar() {
-        // *** except ***
-        massaCorporal = Integer.parseInt(textFieldMassa.getText());
+        try {
+            massaCorporal = Integer.parseInt(textFieldMassa.getText());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "A massa corporal do paciente precisa conter apenas inteiros.");
+            return;
+        }
+
         hasDoencasCronicas = possuiDoencasCronicasCheckBox.isSelected();
         isFumante = eFumanteCheckBox.isSelected();
         hasCovid = testouPositivoParaCOVIDCheckBox.isSelected();

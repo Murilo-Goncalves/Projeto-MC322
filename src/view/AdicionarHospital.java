@@ -78,8 +78,13 @@ public class AdicionarHospital extends JDialog {
 
     private void onAdicionar() {
         nome = textFieldNome.getText();
-        // *** except ***
-        capacidadeLeitos = Integer.parseInt(textFieldNLeitos.getText());
+
+        try {
+            capacidadeLeitos = Integer.parseInt(textFieldNLeitos.getText());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "A capacidade de leitos do hospital precisa conter apenas inteiros.");
+            return;
+        }
 
         ComboItem item;
         item = (ComboItem) comboBoxConvenio.getSelectedItem();

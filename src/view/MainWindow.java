@@ -21,7 +21,7 @@ public class MainWindow extends JFrame {
     private JPanel rootPanel;
 
     public MainWindow() {
-        super("Sistema Covidados");
+        super("Sistema de Controle do COVID por Cidade");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(rootPanel);
 
