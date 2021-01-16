@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a861599-9d38-4e16-87b9-97f54d8bc7c4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/data/info-cidades/cidade.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/objects/cidade.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/FileControllerMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/FileControllerMethods.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +78,7 @@
       <updated>1608426484319</updated>
       <workItem from="1610754394716" duration="2843000" />
       <workItem from="1610793711286" duration="236000" />
-      <workItem from="1610821935269" duration="1598000" />
+      <workItem from="1610821935269" duration="2088000" />
     </task>
     <servers />
   </component>
