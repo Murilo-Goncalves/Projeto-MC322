@@ -1,5 +1,6 @@
 package view;
 
+import controller.FileControllerMethods;
 import controller.ObjectIO;
 import model.*;
 
@@ -36,10 +37,14 @@ public class MainWindow extends JFrame {
                 File data = new File("data");
                 if (!data.exists()) {
                     data.mkdirs();
+                    File objects = new File("data/objects");
+                    File infoCidades = new File("data/info-cidades");
+                    objects.mkdirs();
+                    infoCidades.mkdirs();
                 }
                 for (Cidade cidade : cidades) {
-                    String path = "data/" + cidade.getNome() + ".ser";
-                    ObjectIO.writeObjectToFile(path, cidade);
+                    ObjectIO.writeObjectToFile("data/objects/" + cidade.getNome() + ".ser", cidade);
+                    FileControllerMethods.saveFile("data/info-cidades/" + cidade.getNome() + ".txt", cidade.toString());
                 }
 
                 dispose();
@@ -54,8 +59,13 @@ public class MainWindow extends JFrame {
                                           }
 
                                           // Pega cidade adicionada no form Adicionar Cidade caso não seja vazia
-                                          Cidade cidade = cidades.get(cidades.size()-1);
-                                          if (!cidade.getNome().equals("")) comboBoxCidade.addItem(new ComboItem(cidade.getNome(), cidade));
+                                          if (!cidades.isEmpty())
+                                          {
+                                              Cidade cidade = cidades.get(cidades.size()-1);
+                                              if (!cidade.getNome().equals("")) {
+                                                  comboBoxCidade.addItem(new ComboItem(cidade.getNome(), cidade));
+                                              }
+                                          }
                                       }
                                   });
 
