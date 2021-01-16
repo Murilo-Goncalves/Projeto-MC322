@@ -19,7 +19,7 @@ public class ObjectIO {
         }
     }
 
-    public static Object ReadObjectFromFile(String filepath) {
+    public static Object readObjectFromFile(String filepath) {
         try {
             FileInputStream fileIn = new FileInputStream(filepath);
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);

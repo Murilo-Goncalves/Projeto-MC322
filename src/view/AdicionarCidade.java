@@ -57,7 +57,8 @@ public class AdicionarCidade extends JDialog {
     private void onAdicionar(ArrayList<Cidade> cidades) {
         nome = textFieldNome.getText();
         textFieldNome.setText("");
-        cidades.add(new Cidade(nome));
+        if (nome != "")
+            cidades.add(new Cidade(nome));
         dispose();
     }
 

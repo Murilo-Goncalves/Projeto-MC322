@@ -1,7 +1,7 @@
 package model;
 
 public class HospitalPrivado extends Hospital implements FuncoesHospital {
-	private final Convenio convenioAtendido;
+    private final Convenio convenioAtendido;
     
     // Construtor
     public HospitalPrivado(String nome, int capacidadeLeitos, Regiao regiao, Convenio convenio) {

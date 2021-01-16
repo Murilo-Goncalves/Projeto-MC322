@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.util.ArrayList;
 
 public class MainWindow extends JFrame {
@@ -26,6 +27,8 @@ public class MainWindow extends JFrame {
         // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setContentPane(rootPanel);
+
+        readCidades();
 
         addWindowListener(new WindowAdapter() { // cria os arquivos em .txt
             @Override
@@ -98,6 +101,18 @@ public class MainWindow extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
+    }
+
+    public void readCidades() {
+        File dir = new File("data");
+        File[] directoryListing = dir.listFiles();
+        if (directoryListing != null) {
+            for (File file : directoryListing) {
+                Cidade cidade = (Cidade) ObjectIO.readObjectFromFile(file.getPath());
+                cidades.add(cidade);
+                comboBoxCidade.addItem(new ComboItem(cidade.getNome(), cidade));
+            }
+        }
     }
 
     public String getCidadeNome() {
