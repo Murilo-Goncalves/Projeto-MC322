@@ -1,11 +1,14 @@
 package view;
 
+import controller.FileControllerMethods;
 import model.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -22,8 +25,20 @@ public class MainWindow extends JFrame {
 
     public MainWindow() {
         super("Sistema de Controle do COVID por Cidade");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setContentPane(rootPanel);
+
+        addWindowListener(new WindowAdapter() { // cria os arquivos em .txt
+            public void windowClosing(WindowEvent event) {
+                for (Cidade cidade : cidades) {
+                    String path = "data/" + cidade.getNome() + ".txt";
+                    FileControllerMethods.saveFile(path, cidade.toString());
+                }
+                dispose();
+                System.exit(0);                 // termina programa
+            }
+        });
 
         bCidade.addActionListener(new ActionListener() {
                                       public void actionPerformed(ActionEvent arg0) {

@@ -1,0 +1,12 @@
+Cidade fasdfsdfsd
+  * Número de Cidadaos cadastrados: 0
+  * Número de hospitais privados: 0
+  * Número de hospitais públicos: 0
+  * Número de cidadaos com COVID no Norte: 0
+  * Número de cidadaos com COVID no Sul: 0
+  * Número de cidadaos com COVID no Leste: 0
+  * Número de cidadaos com COVID no Oeste: 0
+  * Número de cidadaos com COVID no Centro: 0
+ Hospitais públicos da cidade:
+ Hospitais privados da cidade:
+
