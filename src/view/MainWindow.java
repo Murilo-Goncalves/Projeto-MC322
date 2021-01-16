@@ -33,10 +33,15 @@ public class MainWindow extends JFrame {
         addWindowListener(new WindowAdapter() { // cria os arquivos em .txt
             @Override
             public void windowClosing(WindowEvent event) {
+                File data = new File("data");
+                if (!data.exists()) {
+                    data.mkdirs();
+                }
                 for (Cidade cidade : cidades) {
                     String path = "data/" + cidade.getNome() + ".ser";
                     ObjectIO.writeObjectToFile(path, cidade);
                 }
+
                 dispose();
                 System.exit(0);                 // termina programa
             }
