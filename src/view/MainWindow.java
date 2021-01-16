@@ -1,6 +1,6 @@
 package view;
 
-import controller.FileControllerMethods;
+import controller.FileIO;
 import controller.ObjectIO;
 import model.*;
 
@@ -44,7 +44,7 @@ public class MainWindow extends JFrame {
                 }
                 for (Cidade cidade : cidades) {
                     ObjectIO.writeObjectToFile("data/objects/" + cidade.getNome() + ".ser", cidade);
-                    FileControllerMethods.saveFile("data/info-cidades/" + cidade.getNome() + ".txt", cidade.toString());
+                    FileIO.saveFile("data/info-cidades/" + cidade.getNome() + ".txt", cidade.toString());
                 }
                 dispose();
                 System.exit(0);                 // termina programa
@@ -118,7 +118,7 @@ public class MainWindow extends JFrame {
     }
 
     public void readCidades() {
-        File dir = new File("data");
+        File dir = new File("data/objects");
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
             for (File file : directoryListing) {

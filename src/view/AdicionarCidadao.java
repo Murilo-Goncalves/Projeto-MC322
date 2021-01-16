@@ -116,6 +116,11 @@ public class AdicionarCidadao extends JDialog {
 
     private void onAdicionar() {
         nome = textFieldNome.getText();
+        if (nome.equals("")) {
+            JOptionPane.showMessageDialog(null, "O nome do cidadão é obrigatório.");
+            return;
+        }
+
         cpf = textFieldCpf.getText();
         login = textFieldLogin.getText();
         senha = textFieldSenha.getText();
@@ -167,6 +172,8 @@ public class AdicionarCidadao extends JDialog {
                     formPaciente.setHospitalEncontrado(hospital.getNome());
                     formPaciente.setVisible(true);
                     boolean isInternado = hospital.ficharPaciente(cidadao, formPaciente.getMassaCorporal(), formPaciente.getHasDoencasCronicas(), formPaciente.getIsFumante(), formPaciente.getHasCovid());
+                    cidade.aumentaNCidadaosComCovid(formPaciente.getHasCovid(), cidadao.getRegiao());
+
                     if (isInternado) {
                         JOptionPane.showMessageDialog(null, "O paciente deverá ser internado. Dirija-se para o hospital o quanto antes.");
                     } else {
@@ -181,6 +188,7 @@ public class AdicionarCidadao extends JDialog {
     }
 
     private void onCancel() {
+        setDefaultValues();
         dispose();
     }
 
@@ -210,6 +218,8 @@ public class AdicionarCidadao extends JDialog {
         diarreiaCheckBox.setSelected(false);
 
         desejaProcurarUmHospitalCheckBox.setSelected(false);
+
+        sintomas.clear();
     }
 
     public String getNome() {
