@@ -20,7 +20,6 @@ public class FileControllerMethods {
         if (file.exists()) {
             if (file.isDirectory()) {
                 String[] directory = file.list();
-                // String pathTest = file.getPath();
                 System.out.println("**** Conteúdo do diretório ****");
                 assert directory != null;
                 for (String dirName : directory) {
