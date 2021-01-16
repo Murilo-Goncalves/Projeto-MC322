@@ -2,7 +2,7 @@ package controller;
 import java.io.*;
 import java.util.Scanner;
 import java.util.Formatter;
-public class FileControllerMethods {
+public class FileIO {
     public static void saveFile (String path, String str) {
         try{
             Formatter output = new Formatter(path);

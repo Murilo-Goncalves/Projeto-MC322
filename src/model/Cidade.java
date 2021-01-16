@@ -27,17 +27,17 @@ public class Cidade implements Serializable {
         nCidades++;
     }
 
-    private void aumentaNCidadaosComCovid(boolean temCovid, Regiao regiao) {
+    public void aumentaNCidadaosComCovid(boolean temCovid, Regiao regiao) {
         if (temCovid)
-            if(regiao == Regiao.NORTE)
+            if (regiao == Regiao.NORTE)
                 nCidadaosComCovidNorte += 1;
-            if(regiao == Regiao.SUL)
+            else if (regiao == Regiao.SUL)
                 nCidadaosComCovidSul += 1;
-            if(regiao == Regiao.LESTE)
+            else if (regiao == Regiao.LESTE)
                 nCidadaosComCovidLeste += 1;
-            if(regiao == Regiao.OESTE)
+            else if (regiao == Regiao.OESTE)
                 nCidadaosComCovidOeste += 1;
-            else
+            else if (regiao == Regiao.CENTRO)
                 nCidadaosComCovidCentro += 1;
     }
 
@@ -99,11 +99,15 @@ public class Cidade implements Serializable {
         out += "\n  * Número de cidadaos com COVID no Oeste: " + getnCidadaosComCovidOeste();
         out += "\n  * Número de cidadaos com COVID no Centro: " + getnCidadaosComCovidCentro();
 
+        out += "\n\n Cidadãos da cidade:\n";
+        for (Cidadao cidadao : cidadaos) {
+            if (cidadao != null) out += "  * " + cidadao.getNome() + "\n";
+        }
 
         out += "\n Hospitais públicos da cidade:\n";
         for (HospitalPublico hospital : hospitaisPublicos)
             out += "  * " + hospital.getNome() + "\n";
-        out += " Hospitais privados da cidade:\n";
+        out += "\n Hospitais privados da cidade:\n";
         for (HospitalPrivado hospital : hospitaisPrivados)
             out += "  * " + hospital.getNome() + "\n";
 
