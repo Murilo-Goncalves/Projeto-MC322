@@ -1,5 +1,6 @@
 package view;
 
+import controller.FileControllerMethods;
 import controller.ObjectIO;
 import model.*;
 
@@ -40,6 +41,7 @@ public class MainWindow extends JFrame {
                 for (Cidade cidade : cidades) {
                     String path = "data/" + cidade.getNome() + ".ser";
                     ObjectIO.writeObjectToFile(path, cidade);
+                    FileControllerMethods.saveFile("data/" + cidade.getNome() + ".txt", cidade.toString());
                 }
 
                 dispose();
