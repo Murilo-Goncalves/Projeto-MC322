@@ -1,8 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Hospital implements FuncoesHospital {
+public abstract class Hospital implements FuncoesHospital, Serializable {
+    private static final long serialVersionUID = 6L;
+
     private String nome;
     private int capacidadeLeitos;
     private Regiao regiao;

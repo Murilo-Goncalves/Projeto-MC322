@@ -1,6 +1,6 @@
 package model;
 
-public class HospitalPublico extends Hospital implements FuncoesHospital{
+public class HospitalPublico extends Hospital implements FuncoesHospital {
 	private final Convenio convenioAtendido;
     
     // Construtor

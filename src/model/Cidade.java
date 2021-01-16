@@ -1,8 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cidade {
+public class Cidade implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private final String nome;
     private final ArrayList<Cidadao> cidadaos;
     private final ArrayList<HospitalPublico> hospitaisPublicos;

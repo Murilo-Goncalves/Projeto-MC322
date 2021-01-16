@@ -1,8 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cidadao {
+public class Cidadao implements Serializable {
+    private static final long serialVersionUID = 2L;
+
     private String nome;
     private String cpf;
     private String login;
