@@ -1,15 +1,13 @@
 package view;
 
-import controller.FileControllerMethods;
+import controller.ObjectIO;
 import model.*;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainWindow extends JFrame {
@@ -30,10 +28,11 @@ public class MainWindow extends JFrame {
         setContentPane(rootPanel);
 
         addWindowListener(new WindowAdapter() { // cria os arquivos em .txt
+            @Override
             public void windowClosing(WindowEvent event) {
                 for (Cidade cidade : cidades) {
-                    String path = "data/" + cidade.getNome() + ".txt";
-                    FileControllerMethods.saveFile(path, cidade.toString());
+                    String path = "data/" + cidade.getNome() + ".ser";
+                    ObjectIO.writeObjectToFile(path, cidade);
                 }
                 dispose();
                 System.exit(0);                 // termina programa
@@ -47,8 +46,8 @@ public class MainWindow extends JFrame {
                                           }
 
                                           // Pega cidade adicionada no form Adicionar Cidade caso não seja vazia
-                                          Cidade tmp = cidades.get(cidades.size()-1);
-                                          if (!tmp.getNome().equals("")) comboBoxCidade.addItem(new ComboItem(tmp.getNome(), tmp));
+                                          Cidade cidade = cidades.get(cidades.size()-1);
+                                          if (!cidade.getNome().equals("")) comboBoxCidade.addItem(new ComboItem(cidade.getNome(), cidade));
                                       }
                                   });
 
