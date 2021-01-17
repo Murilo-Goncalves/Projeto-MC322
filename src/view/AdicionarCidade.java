@@ -1,6 +1,7 @@
 package view;
 
 import model.Cidade;
+import model.InputData;
 import model.StringException;
 
 import javax.swing.*;
@@ -56,10 +57,15 @@ public class AdicionarCidade extends JDialog {
     }
 
     private void onAdicionar(ArrayList<Cidade> cidades) {
+
         nome = textFieldNome.getText();
         textFieldNome.setText("");
-        if (nome != "")
+        if (!nome.equals(""))
             cidades.add(new Cidade(nome));
+        else {
+            JOptionPane.showMessageDialog(null, "Dê um nome para a nova cidade.");
+            return;
+        }
         dispose();
     }
 

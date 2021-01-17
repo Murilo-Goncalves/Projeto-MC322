@@ -115,19 +115,18 @@ public class AdicionarCidadao extends JDialog {
     }
 
     private void onAdicionar() {
-        nome = textFieldNome.getText();
-        if (nome.equals("")) {
-            JOptionPane.showMessageDialog(null, "O nome do cidadão é obrigatório.");
+        try {
+            nome = InputData.inputString(textFieldNome.getText());
+            cpf = InputData.inputString(textFieldCpf.getText());
+            login = InputData.inputString(textFieldLogin.getText());
+            senha = InputData.inputSign(textFieldSenha.getText());
+            idade = Integer.parseInt(textFieldIdade.getText());
+        }
+        catch (StringException se) {
+            JOptionPane.showMessageDialog(null, se.getMessage());
             return;
         }
-
-        cpf = textFieldCpf.getText();
-        login = textFieldLogin.getText();
-        senha = textFieldSenha.getText();
-
-        try {
-            idade = Integer.parseInt(textFieldIdade.getText());
-        } catch (NumberFormatException ex) {
+        catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "A idade do cidadão precisa conter apenas inteiros.");
             return;
         }
@@ -167,7 +166,8 @@ public class AdicionarCidadao extends JDialog {
                 Hospital hospital = cidade.procurarHospital(cidadao);
                 if (hospital == null) {
                     JOptionPane.showMessageDialog(null, "Não existem hospitais disponíveis na sua região.");
-                } else {
+                }
+                else {
                     formPaciente.setHospital(hospital);
                     formPaciente.setHospitalEncontrado(hospital.getNome());
                     formPaciente.setVisible(true);

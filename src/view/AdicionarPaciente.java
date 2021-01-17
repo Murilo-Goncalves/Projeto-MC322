@@ -60,7 +60,8 @@ public class AdicionarPaciente extends JDialog {
     private void onAdicionar() {
         try {
             massaCorporal = Integer.parseInt(textFieldMassa.getText());
-        } catch (NumberFormatException ex) {
+        }
+        catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "A massa corporal do paciente precisa conter apenas inteiros.");
             return;
         }
