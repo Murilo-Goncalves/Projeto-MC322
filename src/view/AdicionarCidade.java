@@ -1,6 +1,7 @@
 package view;
 
 import model.Cidade;
+import model.StringException;
 
 import javax.swing.*;
 import java.awt.event.*;

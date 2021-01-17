@@ -18,16 +18,8 @@ public abstract class Hospital implements FuncoesHospital, Serializable {
 
     // Construtor
     public Hospital(String nome, int capacidadeLeitos, Regiao regiao) {
-        try {
-            this.nome = InputData.inputString(nome);
-            this.capacidadeLeitos = capacidadeLeitos;
-        }
-        catch (StringException se) {
-            JOptionPane.showMessageDialog(null,se.getMessage());
-        }
-        catch (NumberFormatException ne) {
-            JOptionPane.showMessageDialog(null,ne.getMessage());
-        }
+        this.nome = nome;
+        this.capacidadeLeitos = capacidadeLeitos;
         this.regiao = regiao;
         this.pacientes = new ArrayList<Paciente>();
     }
