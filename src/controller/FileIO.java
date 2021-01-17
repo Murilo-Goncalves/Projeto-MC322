@@ -25,8 +25,8 @@ public class FileIO {
                 System.out.println("Folder " + newFolder.getName() + " created!");
                 return newFolder;
             }
-            System.out.println("Folder " + grandFolder.getName() + " already exists.");
-            System.out.printf("Path: %s\n%s\n", grandFolder.getPath(), grandFolder.getAbsolutePath());
+            System.out.println("Folder " + newFolder.getName() + " already exists.");
+            System.out.printf("Path: %s\n%s\n", newFolder.getPath(), newFolder.getAbsolutePath());
             return newFolder;
         }
         catch (Exception ex) {

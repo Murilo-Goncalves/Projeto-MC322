@@ -30,32 +30,46 @@ public class MainWindow extends JFrame {
         setContentPane(rootPanel);
         readCidades();
 
-        addWindowListener(new WindowAdapter() { // cria os arquivos em .txt
+        // cria as pastas, os arquivos em .txt e arquivos .ser (binário)
+        addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent event) {
                 File data = new File("data");
                 if (!data.exists())
                     data.mkdirs();
+
+                // separa pastas em objects (binário) e info-cidades (texto)
                 File objects = FileIO.createFolder(data, "objects");
                 File infoCidades = FileIO.createFolder(data, "info-cidades");
 
                 for (Cidade cidade : cidades) {
-                    // new FileIO();
-                    File cidadeN = FileIO.createFolder(infoCidades, cidade.getNome());
+
+                    // salva os arquivos binários
                     assert objects != null;
                     ObjectIO.writeObjectToFile(objects.getAbsolutePath() + "/" +
-                                                cidade.getNome() + ".ser", cidade);
+                            cidade.getNome() + ".ser", cidade);
+
+                    // cria uma pasta para cada cidade
+                    File cidadeN = FileIO.createFolder(infoCidades, cidade.getNome());
                     assert cidadeN != null;
+                    /*
+                        Salva o arquivo da cidade na pasta de mesmo nome, e cria pastas de
+                    hospitais público e privado.
+                    */
                     FileIO.saveFile(cidadeN, cidade.getNome(), cidade.toString());
-                    // new FileIO();
                     File hospitaisPublicos = FileIO.createFolder(cidadeN, "Hospitais Publicos");
                     assert hospitaisPublicos != null;
                     for (HospitalPublico hospitalPublico : cidade.getHospitaisPublicos()) {
-                        // new FileIO();
-                        File HospitalPubN = FileIO.createFolder(hospitaisPublicos, hospitalPublico.getNome());
+                        /*
+                            Cria uma pasta para cada hospital público, e insere dentro da pasta os
+                         arquivos do hospital e a pasta "Pacientes", com os arquivos dos pacientes"
+                         */
+
+                        File HospitalPubN = FileIO.createFolder(hospitaisPublicos,
+                                                                hospitalPublico.getNome());
                         assert HospitalPubN != null;
-                        FileIO.saveFile(HospitalPubN, hospitalPublico.getNome(), hospitalPublico.toString());
-                        // new FileIO();
+                        FileIO.saveFile(HospitalPubN, hospitalPublico.getNome(),
+                                        hospitalPublico.toString());
                         File Pacientes = FileIO.createFolder(HospitalPubN, "Pacientes");
                         assert Pacientes != null;
                         for (Paciente paciente : hospitalPublico.getPacientes()) {
@@ -63,15 +77,17 @@ public class MainWindow extends JFrame {
                             FileIO.saveFile(Pacientes, paciente.getNome(), paciente.toString());
                         }
                     }
-                    // new FileIO();
                     File hospitaisPrivados = FileIO.createFolder(cidadeN, "Hospitais Privados");
                     assert hospitaisPrivados != null;
                     for (HospitalPrivado hospitalPriv : cidade.getHospitaisPrivados()) {
-                        // new FileIO();
-                        File HospitalPrivN = FileIO.createFolder(hospitaisPrivados, hospitalPriv.getNome());
+                        /*
+                            Cria uma pasta para cada hospital privado, e insere dentro da pasta os
+                         arquivos do hospital e a pasta "Pacientes", com os arquivos dos pacientes"
+                         */
+                        File HospitalPrivN = FileIO.createFolder(hospitaisPrivados,
+                                                                hospitalPriv.getNome());
                         assert HospitalPrivN != null;
                         FileIO.saveFile(HospitalPrivN, hospitalPriv.getNome(), hospitalPriv.toString());
-                        // new FileIO();
                         File Pacientes = FileIO.createFolder(HospitalPrivN, "Pacientes");
                         assert Pacientes != null;
                         for (Paciente paciente : hospitalPriv.getPacientes()) {
@@ -81,7 +97,7 @@ public class MainWindow extends JFrame {
                     }
                 }
             dispose();
-            System.exit(0);                 // termina programa
+            System.exit(0);  // termina programa
             }
         });
 
