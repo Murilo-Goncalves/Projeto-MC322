@@ -144,6 +144,15 @@ public class Cidade implements Serializable {
     }
 
     public ArrayList<Cidadao> getCidadaos() { return cidadaos; }
+
+    public ArrayList<HospitalPublico> getHospitaisPublicos() {
+        return hospitaisPublicos;
+    }
+
+    public ArrayList<HospitalPrivado> getHospitaisPrivados() {
+        return hospitaisPrivados;
+    }
+
     public String getNome()
     {
         return nome;

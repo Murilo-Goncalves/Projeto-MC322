@@ -28,45 +28,79 @@ public class MainWindow extends JFrame {
         // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setContentPane(rootPanel);
-
         readCidades();
 
         addWindowListener(new WindowAdapter() { // cria os arquivos em .txt
             @Override
             public void windowClosing(WindowEvent event) {
                 File data = new File("data");
-                if (!data.exists()) {
+                if (!data.exists())
                     data.mkdirs();
-                    File objects = new File("data/objects");
-                    File infoCidades = new File("data/info-cidades");
-                    objects.mkdirs();
-                    infoCidades.mkdirs();
-                }
+                File objects = FileIO.createFolder(data, "objects");
+                File infoCidades = FileIO.createFolder(data, "info-cidades");
+
                 for (Cidade cidade : cidades) {
-                    ObjectIO.writeObjectToFile("data/objects/" + cidade.getNome() + ".ser", cidade);
-                    FileIO.saveFile("data/info-cidades/" + cidade.getNome() + ".txt", cidade.toString());
+                    // new FileIO();
+                    File cidadeN = FileIO.createFolder(infoCidades, cidade.getNome());
+                    assert objects != null;
+                    ObjectIO.writeObjectToFile(objects.getAbsolutePath() + "/" +
+                                                cidade.getNome() + ".ser", cidade);
+                    assert cidadeN != null;
+                    FileIO.saveFile(cidadeN, cidade.getNome(), cidade.toString());
+                    // new FileIO();
+                    File hospitaisPublicos = FileIO.createFolder(cidadeN, "Hospitais Publicos");
+                    assert hospitaisPublicos != null;
+                    for (HospitalPublico hospitalPublico : cidade.getHospitaisPublicos()) {
+                        // new FileIO();
+                        File HospitalPubN = FileIO.createFolder(hospitaisPublicos, hospitalPublico.getNome());
+                        assert HospitalPubN != null;
+                        FileIO.saveFile(HospitalPubN, hospitalPublico.getNome(), hospitalPublico.toString());
+                        // new FileIO();
+                        File Pacientes = FileIO.createFolder(HospitalPubN, "Pacientes");
+                        assert Pacientes != null;
+                        for (Paciente paciente : hospitalPublico.getPacientes()) {
+                            assert paciente != null;
+                            FileIO.saveFile(Pacientes, paciente.getNome(), paciente.toString());
+                        }
+                    }
+                    // new FileIO();
+                    File hospitaisPrivados = FileIO.createFolder(cidadeN, "Hospitais Privados");
+                    assert hospitaisPrivados != null;
+                    for (HospitalPrivado hospitalPriv : cidade.getHospitaisPrivados()) {
+                        // new FileIO();
+                        File HospitalPrivN = FileIO.createFolder(hospitaisPrivados, hospitalPriv.getNome());
+                        assert HospitalPrivN != null;
+                        FileIO.saveFile(HospitalPrivN, hospitalPriv.getNome(), hospitalPriv.toString());
+                        // new FileIO();
+                        File Pacientes = FileIO.createFolder(HospitalPrivN, "Pacientes");
+                        assert Pacientes != null;
+                        for (Paciente paciente : hospitalPriv.getPacientes()) {
+                            assert paciente != null;
+                            FileIO.saveFile(Pacientes, paciente.getNome(), paciente.toString());
+                        }
+                    }
                 }
-                dispose();
-                System.exit(0);                 // termina programa
+            dispose();
+            System.exit(0);                 // termina programa
             }
         });
 
         bCidade.addActionListener(new ActionListener() {
-                                      public void actionPerformed(ActionEvent arg0) {
-                                          if (!formCidade.isVisible()) {
-                                              formCidade.setVisible(true);
-                                          }
+              public void actionPerformed(ActionEvent arg0) {
+                  if (!formCidade.isVisible()) {
+                      formCidade.setVisible(true);
+                  }
 
-                                          // Pega cidade adicionada no form Adicionar Cidade caso não seja vazia
-                                          if (!cidades.isEmpty())
-                                          {
-                                              Cidade cidade = cidades.get(cidades.size()-1);
-                                              if (!cidade.getNome().equals("")) {
-                                                  comboBoxCidade.addItem(new ComboItem(cidade.getNome(), cidade));
-                                              }
-                                          }
-                                      }
-                                  });
+                  // Pega cidade adicionada no form Adicionar Cidade caso não seja vazia
+                  if (!cidades.isEmpty())
+                  {
+                      Cidade cidade = cidades.get(cidades.size()-1);
+                      if (!cidade.getNome().equals("")) {
+                          comboBoxCidade.addItem(new ComboItem(cidade.getNome(), cidade));
+                      }
+                  }
+              }
+          });
 
         bCidadao.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
