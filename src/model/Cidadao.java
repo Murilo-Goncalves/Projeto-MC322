@@ -23,22 +23,18 @@ public class Cidadao implements Serializable {
     public Cidadao(String nome, String cpf, String login, String senha, int idade, String telefone,
                    String email, Sexo sexo, ArrayList<Sintomas> sintomas, Regiao regiao,
                    Convenio convenio) {
-        try {
-            this.nome = InputData.inputString(nome);
-            this.cpf = InputData.inputString(cpf);
-            this.login = InputData.inputString(login);
-            this.senha = InputData.inputSign(senha);
-            this.idade = idade;
-            this.telefone = InputData.inputString(telefone);
-            this.email = InputData.inputString(email);
-            this.sexo = sexo;
-            this.sintomas = sintomas;
-            this.regiao = regiao;
-            this.convenio = convenio;
-        }
-        catch (StringException | NumberFormatException se) {
-            JOptionPane.showMessageDialog(null,se.getMessage());
-        }
+
+        this.nome = nome;
+        this.cpf = cpf;
+        this.login = login;
+        this.senha = senha;
+        this.idade = idade;
+        this.telefone = telefone;
+        this.email = email;
+        this.sexo = sexo;
+        this.sintomas = sintomas;
+        this.regiao = regiao;
+        this.convenio = convenio;
     }
 
     public boolean hasConvenio() {
