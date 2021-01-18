@@ -121,6 +121,8 @@ public class AdicionarCidadao extends JDialog {
             login = InputData.inputString(textFieldLogin.getText());
             senha = InputData.inputSign(textFieldSenha.getText());
             idade = Integer.parseInt(textFieldIdade.getText());
+            telefone = InputData.inputString(textFieldTelefone.getText());
+            email = InputData.inputString(textFieldEmail.getText());
         }
         catch (StringException se) {
             JOptionPane.showMessageDialog(null, se.getMessage());
@@ -130,9 +132,6 @@ public class AdicionarCidadao extends JDialog {
             JOptionPane.showMessageDialog(null, "A idade do cidadão precisa conter apenas inteiros.");
             return;
         }
-
-        telefone = textFieldTelefone.getText();
-        email = textFieldEmail.getText();
 
         ComboItem item;
         item = (ComboItem) comboBoxSexo.getSelectedItem();

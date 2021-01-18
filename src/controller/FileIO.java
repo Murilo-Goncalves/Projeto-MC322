@@ -23,10 +23,11 @@ public class FileIO {
             if (!newFolder.exists()) {
                 newFolder.mkdirs();
                 System.out.println("Folder " + newFolder.getName() + " created!");
-                return newFolder;
             }
-            System.out.println("Folder " + newFolder.getName() + " already exists.");
-            System.out.printf("Path: %s\n%s\n", newFolder.getPath(), newFolder.getAbsolutePath());
+            else {
+                System.out.println("Folder " + newFolder.getName() + " already exists.");
+                System.out.printf("Path: %s\n%s\n", newFolder.getPath(), newFolder.getAbsolutePath());
+            }
             return newFolder;
         }
         catch (Exception ex) {
