@@ -1,6 +1,0 @@
-Informações do hospital campinas
-  * Capacidade de leitos: 223
-  * Região: NORTE
-Nomes dos pacientes no hospital:
-Este hospital é público.
-
