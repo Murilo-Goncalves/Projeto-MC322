@@ -104,7 +104,8 @@ public class MainWindow extends JFrame {
                     Hospital hospital = formHospital.getHospital();
                     if (hospital instanceof  HospitalPrivado) {
                         cidade.adicionaHospital((HospitalPrivado) hospital);
-                    } else {
+                    }
+                    else {
                         cidade.adicionaHospital((HospitalPublico) hospital);
                     }
 
@@ -194,8 +195,10 @@ public class MainWindow extends JFrame {
             public void actionPerformed(ActionEvent arg0) {
                 if (!cidades.isEmpty()) {
                     ComboItem comboHospital = (ComboItem) comboBoxHospital.getSelectedItem();
+                    assert comboHospital != null;
                     Hospital hospital = (Hospital) comboHospital.getValue();
                     ComboItem comboPaciente = (ComboItem) comboBoxPaciente.getSelectedItem();
+                    assert comboPaciente != null;
                     Paciente paciente = (Paciente) comboPaciente.getValue();
                     hospital.removerPaciente(paciente);
                     comboBoxPaciente.removeItem(comboPaciente);
@@ -217,6 +220,11 @@ public class MainWindow extends JFrame {
                 cidades.add(cidade);
                 comboBoxCidade.addItem(new ComboItem(cidade.getNome(), cidade));
                 readHospitais(cidade);
+                // atualiza quais sao os pacientes, quando abrimos o sistema
+                if (cidade.getHospitaisPublicos() != null)                  // em readHospitais,
+                    readPacientes(cidade.getHospitaisPublicos().get(0));    // um hospital público
+                else if (cidade.getHospitaisPrivados() != null)             //possui preferência.
+                    readPacientes(cidade.getHospitaisPrivados().get(0));
             }
         }
     }
