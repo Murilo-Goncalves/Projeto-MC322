@@ -1,0 +1,6 @@
+Informações do hospital hospiral
+  * Capacidade de leitos: 32
+  * Região: NORTE
+Nomes dos pacientes no hospital:
+Este hospital é público.
+

@@ -56,7 +56,7 @@ public class AdicionarCidadao extends JDialog {
 
     private final AdicionarPaciente formPaciente = new AdicionarPaciente("Ficha Médica");
 
-    public AdicionarCidadao(String title) {
+    public AdicionarCidadao(String title, JComboBox<ComboItem> comboBoxPaciente) {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -81,7 +81,7 @@ public class AdicionarCidadao extends JDialog {
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onAdicionar();
+                onAdicionar(comboBoxPaciente);
             }
         });
 
@@ -106,7 +106,7 @@ public class AdicionarCidadao extends JDialog {
 
         contentPane.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onAdicionar();
+                onAdicionar(comboBoxPaciente);
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
@@ -114,7 +114,7 @@ public class AdicionarCidadao extends JDialog {
         setLocationRelativeTo(null);
     }
 
-    private void onAdicionar() {
+    private void onAdicionar(JComboBox<ComboItem> comboBoxPaciente) {
         try {
             nome = InputData.inputString(textFieldNome.getText());
             cpf = InputData.inputString(textFieldCpf.getText());
@@ -170,10 +170,11 @@ public class AdicionarCidadao extends JDialog {
                     formPaciente.setHospital(hospital);
                     formPaciente.setHospitalEncontrado(hospital.getNome());
                     formPaciente.setVisible(true);
-                    boolean isInternado = hospital.ficharPaciente(cidadao, formPaciente.getMassaCorporal(), formPaciente.getHasDoencasCronicas(), formPaciente.getIsFumante(), formPaciente.getHasCovid());
+                    Paciente paciente = hospital.ficharPaciente(cidadao, formPaciente.getMassaCorporal(), formPaciente.getHasDoencasCronicas(), formPaciente.getIsFumante(), formPaciente.getHasCovid());
                     cidade.aumentaNCidadaosComCovid(formPaciente.getHasCovid(), cidadao.getRegiao());
 
-                    if (isInternado) {
+                    if (paciente != null) {
+                        comboBoxPaciente.addItem(new ComboItem(paciente.getNome(), paciente));
                         JOptionPane.showMessageDialog(null, "O paciente deverá ser internado. Dirija-se para o hospital o quanto antes.");
                     } else {
                         JOptionPane.showMessageDialog(null, "O paciente não precisa ser internado, deve ficar em casa e descansar.");

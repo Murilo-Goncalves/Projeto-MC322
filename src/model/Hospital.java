@@ -25,7 +25,7 @@ public abstract class Hospital implements FuncoesHospital, Serializable {
     }
 
     // Decide se o paciente será internado
-    public boolean ficharPaciente(Cidadao cidadao, int massaCorporal, boolean hasDoencasCronicas, boolean isFumante, boolean hasCovid)
+    public Paciente ficharPaciente(Cidadao cidadao, int massaCorporal, boolean hasDoencasCronicas, boolean isFumante, boolean hasCovid)
     {
         int numeroDeSintomas = cidadao.getSintomas().size();
         
@@ -34,11 +34,11 @@ public abstract class Hospital implements FuncoesHospital, Serializable {
         	Paciente paciente = new Paciente(cidadao, massaCorporal, hasDoencasCronicas, isFumante, hasCovid);
         	pacientes.add(paciente);
 
-        	return true;
+        	return paciente;
         }
         
         else {
-        	return false;
+        	return null;
         }
     }
     

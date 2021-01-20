@@ -1,7 +1,3 @@
-/*
-    TODO atualização automática do combobox Paciente ao adicionar um cidadão no sistema
- */
-
 package view;
 
 import controller.FileIO;
@@ -18,10 +14,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainWindow extends JFrame {
-    private final ArrayList<Cidade> cidades = new ArrayList<Cidade>();
-    private final AdicionarCidade formCidade = new AdicionarCidade("Adicionar Cidade", cidades);
-    private final AdicionarCidadao formCidadao = new AdicionarCidadao("Adicionar Cidadão");
-    private final AdicionarHospital formHospital = new AdicionarHospital("Adicionar Hospital");
     private JButton bHospital;
     private JButton bCidadao;
     private JComboBox<ComboItem> comboBoxCidade;
@@ -32,6 +24,10 @@ public class MainWindow extends JFrame {
     private JButton removerHospital;
     private JButton removerPaciente;
     private JButton removerCidade;
+    private final ArrayList<Cidade> cidades = new ArrayList<Cidade>();
+    private final AdicionarCidade formCidade = new AdicionarCidade("Adicionar Cidade", cidades);
+    private final AdicionarCidadao formCidadao = new AdicionarCidadao("Adicionar Cidadão", comboBoxPaciente);
+    private final AdicionarHospital formHospital = new AdicionarHospital("Adicionar Hospital");
 
     public MainWindow() {
         super("Sistema de Controle do COVID por Cidade");
