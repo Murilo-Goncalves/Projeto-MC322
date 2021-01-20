@@ -48,7 +48,9 @@ public class MainWindow extends JFrame {
                 System.exit(0);  // termina programa
             }
         });
-
+        
+        /* Adiciona as cidades nas opcoes da comboBox, ao se
+           clicar em "Adicionar (cidade)". */
         bCidade.addActionListener(new ActionListener() {
               public void actionPerformed(ActionEvent arg0) {
                   if (!formCidade.isVisible()) {
@@ -63,6 +65,8 @@ public class MainWindow extends JFrame {
               }
           });
 
+        /* Adiciona os cidadaos informacoes da cidade, de acordo com a cidade selecionada, ao se
+           clicar em "Adicionar (cidadao)". */
         bCidadao.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 if (comboBoxCidade.getSelectedItem() == null) {
@@ -79,11 +83,15 @@ public class MainWindow extends JFrame {
 
                     // Adiciona o cidadão na cidade escolhida no combo box
                     Cidadao cidadao = formCidadao.getCidadao();
-                    if (!cidade.getCidadaos().contains(cidadao)) { cidade.adicionaCidadao(cidadao); }
+                    if (!cidade.getCidadaos().contains(cidadao)) {
+                        cidade.adicionaCidadao(cidadao);
+                    }
                 }
             }
         });
 
+        /* Adiciona os hospitais nas opcoes da comboBox, de acordo com a cidade selecionada, ao se
+           clicar em "Adicionar (hospital)". */
         bHospital.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 if (comboBoxCidade.getSelectedItem() == null) {
@@ -109,6 +117,7 @@ public class MainWindow extends JFrame {
             }
         });
 
+        /* Remove uma cidade e todos os hospitais e pacientes presentes na mesma */
         removerCidade.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -123,6 +132,7 @@ public class MainWindow extends JFrame {
             }
         });
 
+        /* Faz a leitura de quais hospitais pertencem a cidade, e atualiza a comboBox */
         comboBoxCidade.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -133,7 +143,11 @@ public class MainWindow extends JFrame {
                 }
             }
         });
-
+        /*
+            Remove um hopital da comboBox de remover hospitais, bem como do array list
+            de hospitais, dentro de cidade.
+            Além disso, remove todos os pacientes dentro desse hopital.
+         */
         removerHospital.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -147,16 +161,21 @@ public class MainWindow extends JFrame {
                             HospitalPublico hospital = (HospitalPublico) comboHospital.getValue();
                             cidade.removeHospital(hospital);
                             comboBoxHospital.removeItem(comboHospital);
+                            comboBoxPaciente.removeAllItems();
                         } else if (comboHospital.getValue() instanceof HospitalPrivado) {
                             HospitalPrivado hospital = (HospitalPrivado) comboHospital.getValue();
                             cidade.removeHospital(hospital);
                             comboBoxHospital.removeItem(comboHospital);
+                            comboBoxPaciente.removeAllItems();
                         }
                     }
                 }
             }
         });
 
+        /* O método verifica qual hospital foi selecionado no comboBox de hospital, e
+           atualiza quais pacientes estao neste hopital.
+         */
         comboBoxHospital.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -174,6 +193,7 @@ public class MainWindow extends JFrame {
             }
         });
 
+        /* Remove determinado paciente da comboBox, e do array de pacientes, dentro do hospital */
         removerPaciente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 if (!cidades.isEmpty()) {
@@ -191,6 +211,7 @@ public class MainWindow extends JFrame {
         setLocationRelativeTo(null);
     }
 
+    /* Faz leitura de quais cidades foram adicionadas, para mostrar na aba das cidades */
     private void readCidades() {
         File dir = new File("data/objects");
         File[] directoryListing = dir.listFiles();
@@ -204,6 +225,9 @@ public class MainWindow extends JFrame {
         }
     }
 
+    /* Faz leitura de quais hospitais estao adicionados em uma cidades, para
+       mostrar na aba de remover hospitais.
+     */
     private void readHospitais(Cidade cidade) {
         comboBoxHospital.removeAllItems();
         for (HospitalPublico hospital : cidade.getHospitaisPublicos()) {
@@ -214,6 +238,10 @@ public class MainWindow extends JFrame {
         }
     }
 
+
+    /* Faz a leitura de quais  pacientes estao em um hospital, para mostrar na aba de
+       remover pacientes.
+     */
     private void readPacientes(HospitalPublico hospital) {
         comboBoxPaciente.removeAllItems();
         for (Paciente paciente : hospital.getPacientes()) {
@@ -228,6 +256,9 @@ public class MainWindow extends JFrame {
         }
     }
 
+    /* Método para remover diretório, auxiliar para createFiles, uma vez que é
+       usado para atualizar o diretório do usuário.
+     */
     private boolean deleteDirectory(File directoryToBeDeleted) {
         File[] allContents = directoryToBeDeleted.listFiles();
         if (allContents != null) {
