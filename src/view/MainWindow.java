@@ -1,3 +1,7 @@
+/*
+    TODO atualização automática do combobox Paciente ao adicionar um cidadão no sistema
+ */
+
 package view;
 
 import controller.FileIO;
@@ -23,10 +27,14 @@ public class MainWindow extends JFrame {
     private JComboBox<ComboItem> comboBoxCidade;
     private JButton bCidade;
     private JPanel rootPanel;
+    private JComboBox comboBoxHospital;
+    private JComboBox comboBoxPaciente;
+    private JButton removerHospital;
+    private JButton removerPaciente;
+    private JButton removerCidade;
 
     public MainWindow() {
         super("Sistema de Controle do COVID por Cidade");
-        // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setContentPane(rootPanel);
         readCidades();
@@ -47,13 +55,10 @@ public class MainWindow extends JFrame {
                       formCidade.setVisible(true);
                   }
 
-                  // Pega cidade adicionada no form Adicionar Cidade caso não seja vazia
-                  if (!cidades.isEmpty())
-                  {
-                      Cidade cidade = cidades.get(cidades.size()-1);
-                      if (!cidade.getNome().equals("")) {
-                          comboBoxCidade.addItem(new ComboItem(cidade.getNome(), cidade));
-                      }
+                  // Pega cidade adicionada no form Adicionar Cidade
+                  Cidade cidade = cidades.get(cidades.size()-1);
+                  if (!cidade.getNome().equals("")) {
+                      comboBoxCidade.addItem(new ComboItem(cidade.getNome(), cidade));
                   }
               }
           });
@@ -76,7 +81,6 @@ public class MainWindow extends JFrame {
                     Cidadao cidadao = formCidadao.getCidadao();
                     if (!cidade.getCidadaos().contains(cidadao)) { cidade.adicionaCidadao(cidadao); }
                 }
-
             }
         });
 
@@ -99,6 +103,86 @@ public class MainWindow extends JFrame {
                     } else {
                         cidade.adicionaHospital((HospitalPublico) hospital);
                     }
+
+                    comboBoxHospital.addItem(new ComboItem(hospital.getNome(), hospital));
+                }
+            }
+        });
+
+        removerCidade.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                if (!cidades.isEmpty()) {
+                    ComboItem comboCidade = (ComboItem) comboBoxCidade.getSelectedItem();
+                    Cidade cidade = (Cidade) comboCidade.getValue();
+                    cidades.remove(cidade);
+                    comboBoxCidade.removeItem(comboCidade);
+                    comboBoxHospital.removeAllItems();
+                    comboBoxPaciente.removeAllItems();
+                }
+            }
+        });
+
+        comboBoxCidade.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (!cidades.isEmpty()) {
+                    ComboItem comboCidade = (ComboItem) comboBoxCidade.getSelectedItem();
+                    Cidade cidade = (Cidade) comboCidade.getValue();
+                    readHospitais(cidade);
+                }
+            }
+        });
+
+        removerHospital.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                if (!cidades.isEmpty()) {
+                    ComboItem comboCidade = (ComboItem) comboBoxCidade.getSelectedItem();
+                    Cidade cidade = (Cidade) comboCidade.getValue();
+
+                    if (comboBoxHospital.getSelectedItem() != null) {
+                        ComboItem comboHospital = (ComboItem) comboBoxHospital.getSelectedItem();
+                        if (comboHospital.getValue() instanceof HospitalPublico) {
+                            HospitalPublico hospital = (HospitalPublico) comboHospital.getValue();
+                            cidade.removeHospital(hospital);
+                            comboBoxHospital.removeItem(comboHospital);
+                        } else if (comboHospital.getValue() instanceof HospitalPrivado) {
+                            HospitalPrivado hospital = (HospitalPrivado) comboHospital.getValue();
+                            cidade.removeHospital(hospital);
+                            comboBoxHospital.removeItem(comboHospital);
+                        }
+                    }
+                }
+            }
+        });
+
+        comboBoxHospital.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (comboBoxHospital.getSelectedItem() != null) {
+                    ComboItem comboHospital = (ComboItem) comboBoxHospital.getSelectedItem();
+
+                    if (comboHospital.getValue() instanceof HospitalPublico) {
+                        HospitalPublico hospital = (HospitalPublico) comboHospital.getValue();
+                        readPacientes(hospital);
+                    } else if (comboHospital.getValue() instanceof HospitalPrivado) {
+                        HospitalPrivado hospital = (HospitalPrivado) comboHospital.getValue();
+                        readPacientes(hospital);
+                    }
+                }
+            }
+        });
+
+        removerPaciente.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                if (!cidades.isEmpty()) {
+                    ComboItem comboHospital = (ComboItem) comboBoxHospital.getSelectedItem();
+                    Hospital hospital = (Hospital) comboHospital.getValue();
+                    ComboItem comboPaciente = (ComboItem) comboBoxPaciente.getSelectedItem();
+                    Paciente paciente = (Paciente) comboPaciente.getValue();
+                    hospital.removerPaciente(paciente);
+                    comboBoxPaciente.removeItem(comboPaciente);
                 }
             }
         });
@@ -107,7 +191,7 @@ public class MainWindow extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    public void readCidades() {
+    private void readCidades() {
         File dir = new File("data/objects");
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
@@ -115,8 +199,43 @@ public class MainWindow extends JFrame {
                 Cidade cidade = (Cidade) ObjectIO.readObjectFromFile(file.getPath());
                 cidades.add(cidade);
                 comboBoxCidade.addItem(new ComboItem(cidade.getNome(), cidade));
+                readHospitais(cidade);
             }
         }
+    }
+
+    private void readHospitais(Cidade cidade) {
+        comboBoxHospital.removeAllItems();
+        for (HospitalPublico hospital : cidade.getHospitaisPublicos()) {
+            comboBoxHospital.addItem(new ComboItem(hospital.getNome(), hospital));
+        }
+        for (HospitalPrivado hospital : cidade.getHospitaisPrivados()) {
+            comboBoxHospital.addItem(new ComboItem(hospital.getNome(), hospital));
+        }
+    }
+
+    private void readPacientes(HospitalPublico hospital) {
+        comboBoxPaciente.removeAllItems();
+        for (Paciente paciente : hospital.getPacientes()) {
+            comboBoxPaciente.addItem(new ComboItem(paciente.getNome(), paciente));
+        }
+    }
+
+    private void readPacientes(HospitalPrivado hospital) {
+        comboBoxPaciente.removeAllItems();
+        for (Paciente paciente : hospital.getPacientes()) {
+            comboBoxPaciente.addItem(new ComboItem(paciente.getNome(), paciente));
+        }
+    }
+
+    private boolean deleteDirectory(File directoryToBeDeleted) {
+        File[] allContents = directoryToBeDeleted.listFiles();
+        if (allContents != null) {
+            for (File file : allContents) {
+                deleteDirectory(file);
+            }
+        }
+        return directoryToBeDeleted.delete();
     }
 
     /*
@@ -124,11 +243,14 @@ public class MainWindow extends JFrame {
     * Cria as respectivas pastas e arquivos que armazenarao os dados das cidades,
     dos hospitais e dos cidadaos.
     * As informacoes salvas serao em ambos os formatos de binário, utilizada pelo
-    sistema para ler as informacoes antigas, quanto no formato de texto, o qual é
-    de leita natural para o usuário.
+      sistema para ler as informacoes antigas, quanto no formato de texto, o qual é
+      de leita natural para o usuário.
     */
     private void createFiles() {
         File data = new File("data");
+
+        deleteDirectory(data);
+
         if (!data.exists())
             data.mkdirs();
 
@@ -137,7 +259,6 @@ public class MainWindow extends JFrame {
         File infoCidades = FileIO.createFolder(data, "info-cidades");
 
         for (Cidade cidade : cidades) {
-
             // salva os arquivos binários
             assert objects != null;
             ObjectIO.writeObjectToFile(objects.getAbsolutePath() + "/" +
@@ -255,4 +376,5 @@ public class MainWindow extends JFrame {
     }
 
     public ArrayList<Cidade> getCidades() { return cidades; }
+
 }

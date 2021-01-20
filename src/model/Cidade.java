@@ -81,7 +81,7 @@ public class Cidade implements Serializable {
         hospitaisPrivados.add(hospital);
     }
 
-    // Remover hospitais:
+    // Remover hospitais
     public void removeHospital(HospitalPublico hospital){hospitaisPublicos.remove(hospital);}
 
     public void removeHospital(HospitalPrivado hospital){hospitaisPrivados.remove(hospital);}
