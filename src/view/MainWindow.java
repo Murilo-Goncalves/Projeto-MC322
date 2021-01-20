@@ -144,7 +144,7 @@ public class MainWindow extends JFrame {
             Remove um hopital da comboBox de remover hospitais, bem como do array list
             de hospitais, dentro de cidade.
             Além disso, remove todos os pacientes dentro desse hopital.
-         */
+        */
         removerHospital.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -172,7 +172,7 @@ public class MainWindow extends JFrame {
 
         /* O método verifica qual hospital foi selecionado no comboBox de hospital, e
            atualiza quais pacientes estao neste hopital.
-         */
+        */
         comboBoxHospital.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -223,7 +223,7 @@ public class MainWindow extends JFrame {
                 // atualiza quais sao os pacientes, quando abrimos o sistema
                 if (cidade.getHospitaisPublicos() != null)                  // em readHospitais,
                     readPacientes(cidade.getHospitaisPublicos().get(0));    // um hospital público
-                else if (cidade.getHospitaisPrivados() != null)             //possui preferência.
+                else if (cidade.getHospitaisPrivados() != null)             // possui preferência
                     readPacientes(cidade.getHospitaisPrivados().get(0));
             }
         }
@@ -231,7 +231,7 @@ public class MainWindow extends JFrame {
 
     /* Faz leitura de quais hospitais estao adicionados em uma cidades, para
        mostrar na aba de remover hospitais.
-     */
+    */
     private void readHospitais(Cidade cidade) {
         comboBoxHospital.removeAllItems();
         for (HospitalPublico hospital : cidade.getHospitaisPublicos()) {
@@ -245,7 +245,7 @@ public class MainWindow extends JFrame {
 
     /* Faz a leitura de quais  pacientes estao em um hospital, para mostrar na aba de
        remover pacientes.
-     */
+    */
     private void readPacientes(HospitalPublico hospital) {
         comboBoxPaciente.removeAllItems();
         for (Paciente paciente : hospital.getPacientes()) {
@@ -262,7 +262,7 @@ public class MainWindow extends JFrame {
 
     /* Método para remover diretório, auxiliar para createFiles, uma vez que é
        usado para atualizar o diretório do usuário.
-     */
+    */
     private boolean deleteDirectory(File directoryToBeDeleted) {
         File[] allContents = directoryToBeDeleted.listFiles();
         if (allContents != null) {
@@ -276,7 +276,7 @@ public class MainWindow extends JFrame {
     /*
     * Método auxiliar para addWindowListener
     * Cria as respectivas pastas e arquivos que armazenarao os dados das cidades,
-    dos hospitais e dos cidadaos.
+      dos hospitais e dos cidadaos.
     * As informacoes salvas serao em ambos os formatos de binário, utilizada pelo
       sistema para ler as informacoes antigas, quanto no formato de texto, o qual é
       de leita natural para o usuário.
@@ -304,7 +304,7 @@ public class MainWindow extends JFrame {
             assert cidadeN != null;
             /*
                 Salva o arquivo da cidade na pasta de mesmo nome, e cria pastas de
-            hospitais público e privado.
+                hospitais público e privado.
             */
             FileIO.saveFile(cidadeN, cidade.getNome(), cidade.toString());
             File hospitaisPublicos = FileIO.createFolder(cidadeN, "Hospitais Publicos");
@@ -312,8 +312,8 @@ public class MainWindow extends JFrame {
             for (HospitalPublico hospitalPublico : cidade.getHospitaisPublicos()) {
             /*
                 Cria uma pasta para cada hospital público, e insere dentro da pasta os
-             arquivos do hospital e a pasta "Pacientes", com os arquivos dos pacientes"
-             */
+                arquivos do hospital e a pasta "Pacientes", com os arquivos dos pacientes"
+            */
 
                 File HospitalPubN = FileIO.createFolder(hospitaisPublicos,
                                                         hospitalPublico.getNome());
@@ -330,10 +330,10 @@ public class MainWindow extends JFrame {
             File hospitaisPrivados = FileIO.createFolder(cidadeN, "Hospitais Privados");
             assert hospitaisPrivados != null;
             for (HospitalPrivado hospitalPriv : cidade.getHospitaisPrivados()) {
-            /*
+              /*
                 Cria uma pasta para cada hospital privado, e insere dentro da pasta os
-             arquivos do hospital e a pasta "Pacientes", com os arquivos dos pacientes"
-             */
+                arquivos do hospital e a pasta "Pacientes", com os arquivos dos pacientes"
+              */
                 File HospitalPrivN = FileIO.createFolder(hospitaisPrivados,
                                                             hospitalPriv.getNome());
                 assert HospitalPrivN != null;
