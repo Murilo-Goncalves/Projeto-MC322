@@ -237,11 +237,6 @@ public class MainWindow extends JFrame {
                 //     readPacientes(cidade.getHospitaisPublicos().get(0));
                 // else if (cidade.getHospitaisPrivados() != null)
                 //    readPacientes(cidade.getHospitaisPrivados().get(0));
-
-                if (cidade.getHospitaisPublicos() != null)                  // em readHospitais,
-                    readPacientes(cidade.getHospitaisPublicos().get(0));    // um hospital público
-                else if (cidade.getHospitaisPrivados() != null)             // possui preferência
-                    readPacientes(cidade.getHospitaisPrivados().get(0));
             }
         }
     }
