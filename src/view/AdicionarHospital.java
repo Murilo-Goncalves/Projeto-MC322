@@ -21,7 +21,7 @@ public class AdicionarHospital extends JDialog {
     private Convenio convenio;
     private boolean isPrivado;
 
-    private Hospital hospital;
+    private Hospital hospital = null;
 
     public AdicionarHospital(String title) {
         setContentPane(contentPane);

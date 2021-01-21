@@ -102,14 +102,15 @@ public class MainWindow extends JFrame {
                     ComboItem item = (ComboItem) comboBoxCidade.getSelectedItem();
                     Cidade cidade = (Cidade) item.getValue();
                     Hospital hospital = formHospital.getHospital();
-                    if (hospital instanceof  HospitalPrivado) {
-                        cidade.adicionaHospital((HospitalPrivado) hospital);
-                    }
-                    else {
-                        cidade.adicionaHospital((HospitalPublico) hospital);
-                    }
+                    if (hospital != null){
+                        if (hospital instanceof HospitalPrivado) {
+                            cidade.adicionaHospital((HospitalPrivado) hospital);
+                        } else {
+                            cidade.adicionaHospital((HospitalPublico) hospital);
+                        }
 
-                    comboBoxHospital.addItem(new ComboItem(hospital.getNome(), hospital));
+                        comboBoxHospital.addItem(new ComboItem(hospital.getNome(), hospital));
+                    }
                 }
             }
         });
@@ -224,19 +225,11 @@ public class MainWindow extends JFrame {
                 readHospitais(cidade);
                 // atualiza quais sao os pacientes, quando abrimos o sistema
 
-                // if (comboBoxHospital != null) {
-                    if (comboBoxHospital.getItemAt(0) instanceof HospitalPrivado) {
-                        readPacientes((HospitalPrivado) comboBoxHospital.getItemAt(0));
-                    }
-                    else if (comboBoxHospital.getItemAt(0) instanceof HospitalPublico) {
-                        readPacientes((HospitalPublico) comboBoxHospital.getItemAt(0));
-                    }
-                // }
                 /* em readHospitais,um hospital público é lido 1°. */
-                // if (cidade.getHospitaisPublicos() != null)
-                //     readPacientes(cidade.getHospitaisPublicos().get(0));
-                // else if (cidade.getHospitaisPrivados() != null)
-                //    readPacientes(cidade.getHospitaisPrivados().get(0));
+                if (!cidade.getHospitaisPublicos().isEmpty())
+                    readPacientes(cidade.getHospitaisPublicos().get(0));
+                else if (!cidade.getHospitaisPrivados().isEmpty())
+                   readPacientes(cidade.getHospitaisPrivados().get(0));
             }
         }
     }
@@ -253,7 +246,6 @@ public class MainWindow extends JFrame {
             comboBoxHospital.addItem(new ComboItem(hospital.getNome(), hospital));
         }
     }
-
 
     /* Faz a leitura de quais  pacientes estao em um hospital, para mostrar na aba de
        remover pacientes.
